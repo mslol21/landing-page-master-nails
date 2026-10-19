@@ -86,10 +86,10 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
 
         {/* Image container */}
         <div className="relative flex min-h-[300px] max-h-[72vh] items-center justify-center bg-obsidian-950 p-2 sm:p-4">
-          <div
-            className={`portfolio-image portfolio-crop-${currentIndex + 1} lightbox-photo`}
-            role="img"
-            aria-label={activeItem.alt}
+          <img
+            src={activeItem.src}
+            alt={activeItem.alt}
+            className="lightbox-photo"
           />
 
           <button

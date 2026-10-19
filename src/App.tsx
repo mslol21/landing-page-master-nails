@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowDown, ArrowRight, CheckCircle2, CirclePlay, Instagram, LockKeyhole, MapPin, Menu, Sparkles, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, CheckCircle2, CirclePlay, Instagram, LockKeyhole, MapPin, Menu, X } from 'lucide-react';
 import { LINK_CHECKOUT, LINK_INSTAGRAM, LINK_WHATSAPP, isLinkConfigured, INSTRUTORA_CONFIG, TOPICOS_APRENDIZADO, PERFIS_PUBLICO, ITENS_INCLUIDOS_CONFIG, INVESTIMENTO_CONFIG, GALERIA_TRABALHOS, FAQ_ITEMS } from './config/courseConfig';
 import { CheckoutButton } from './components/CheckoutButton';
 import { GalleryLightbox } from './components/GalleryLightbox';
@@ -10,7 +10,7 @@ function Reveal({ children, className = '', delay = 0 }: { children: React.React
   const reduce = useReducedMotion();
   return <motion.div className={className} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.18 }} transition={{ duration: reduce ? 0 : .68, delay, ease: [0.22, 1, .36, 1] }}>{children}</motion.div>;
 }
-const Crop = ({ className, label }: { className: string; label: string }) => <div className={'photo-crop ' + className} role="img" aria-label={label} />;
+const Photo = ({ className, src, alt, eager = false }: { className: string; src: string; alt: string; eager?: boolean }) => <img className={className} src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />;
 
 export default function App() {
   const reduce = useReducedMotion();
@@ -48,29 +48,25 @@ export default function App() {
         <div className="hero-inner">
           <motion.div className="hero-copy" initial={heroInitial} animate={{ opacity: 1, y: 0 }} transition={heroTransition}>
             <div className="eyebrow eyebrow-light"><span className="eyebrow-line"/>FORMAÇÃO ONLINE · GEL NA TIPS</div>
-            <h1 id="hero-title">Técnica que transforma <em>cada detalhe.</em></h1>
-            <p className="hero-lede">Aprenda Gel na Tips com um passo a passo claro, do preparo ao acabamento, guiada por quem vive a profissão todos os dias.</p>
+            <h1 id="hero-title">Domine Gel na Tips <em>do preparo ao acabamento.</em></h1>
+            <p className="hero-lede">Aprenda a técnica com Kamila Martins em aulas passo a passo, com foco em estrutura, curvatura e acabamento.</p>
             <div className="hero-actions">
               <CheckoutButton label="Conhecer o curso" subtext="Confira as condições de inscrição" size="lg" className="hero-buy" onUnconfiguredClick={onCheckoutUnavailable}/>
               <a className="hero-secondary" href="#trabalhos"><span className="play-ring"><CirclePlay size={20}/></span>Veja os trabalhos</a>
             </div>
-            <div className="hero-proof"><div className="avatar-stack" aria-hidden="true"><span>K</span><span>✳</span><span>MN</span></div><p><strong>Uma técnica, seis etapas essenciais</strong><br/>para aprender no seu ritmo</p></div>
+            <div className="hero-proof"><span>Aulas passo a passo</span><i/><span>Acesso online</span><i/><span>Certificado</span></div>
           </motion.div>
           <motion.div className="hero-art" initial={reduce ? false : { opacity: 0, scale: .96, x: 20 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: reduce ? 0 : .9, delay: .12, ease: [0.22, 1, .36, 1] }}>
-            <div className="hero-photo-frame"><Crop className="hero-photo" label="Kamila trabalhando em uma aplicação de unhas"/><div className="hero-photo-shade"/><div className="photo-caption"><span>01 — 06</span><span>A beleza está na técnica</span></div></div>
-            <motion.div className="hero-seal" animate={reduce ? undefined : { rotate: [0, 4, 0], y: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}><Sparkles size={17}/><span>ESTRUTURA<br/>& ACABAMENTO</span></motion.div>
-            <div className="hero-index">GEL<br/>NA TIPS</div>
+            <div className="hero-photo-frame"><Photo className="hero-photo" src="/images/hero-kamila-editorial.webp" alt="Nail designer realizando uma aplicação de unhas em estúdio" eager/><div className="photo-caption"><span>MASTER NAILS</span><span>BELEZA COM TÉCNICA</span></div></div>
           </motion.div>
         </div>
         <a className="scroll-cue" href="#curso"><span>ROLE PARA DESCOBRIR</span><ArrowDown size={15}/></a>
       </section>
 
-      <div className="mn-ribbon" aria-hidden="true"><div className="ribbon-track">{[0,1].map((i)=><span className="ribbon-group" key={i}><span>PREPARAÇÃO</span><i>✳</i><span>ESTRUTURA</span><i>✳</i><span>ACABAMENTO</span><i>✳</i><span>GEL NA TIPS</span><i>✳</i></span>)}</div></div>
-
       <section className="mn-intro mn-section" id="curso">
         <Reveal className="section-kicker"><span>01</span><i/> SOBRE O CURSO</Reveal>
         <Reveal className="intro-grid"><div className="intro-heading"><p className="overline">MAIS TÉCNICA. MAIS CONFIANÇA.</p><h2>Aprenda uma técnica<br/><em>em cada etapa.</em></h2></div><div className="intro-copy"><p>O Master Nails: Gel na Tips apresenta o processo de alongamento em gel de forma organizada e prática. Acompanhe as etapas fundamentais e entenda como cada detalhe contribui para um resultado bem estruturado.</p><a href="#conteudo" className="text-link">Explore o conteúdo <ArrowRight size={16}/></a></div></Reveal>
-        <div className="intro-bottom"><Reveal className="intro-image-wrap"><Crop className="detail-photo" label="Detalhe de uma aplicação de gel na tips"/><span className="image-note">DETALHE DA APLICAÇÃO <i>✳</i> KAMILA MARTINS</span></Reveal><div className="intro-facts">{[['01','Aprenda no seu ritmo','Curso online para estudar nos horários que funcionam para você.'],['02','Veja cada etapa de perto','Aulas passo a passo sobre a técnica Gel na Tips.'],['03','Conclua com certificado','Certificado de conclusão incluído no curso.']].map(([n,t,d],i)=><Reveal className="fact-item" key={n} delay={i*.07}><span className="fact-no">{n}</span><div><strong>{t}</strong><p>{d}</p></div></Reveal>)}</div></div>
+        <div className="intro-bottom"><Reveal className="intro-image-wrap"><Photo className="detail-photo" src="/images/course-detail.webp" alt="Unhas em gel com acabamento branco perolado"/><span className="image-note">DETALHE DE ACABAMENTO <i>✳</i> GEL NA TIPS</span></Reveal><div className="intro-facts">{[['01','Aprenda no seu ritmo','Curso online para estudar nos horários que funcionam para você.'],['02','Veja cada etapa de perto','Aulas passo a passo sobre a técnica Gel na Tips.'],['03','Conclua com certificado','Certificado de conclusão incluído no curso.']].map(([n,t,d],i)=><Reveal className="fact-item" key={n} delay={i*.07}><span className="fact-no">{n}</span><div><strong>{t}</strong><p>{d}</p></div></Reveal>)}</div></div>
       </section>
 
       <section className="mn-curriculum mn-section" id="conteudo" aria-labelledby="curriculum-title">
@@ -81,13 +77,13 @@ export default function App() {
 
       <section className="mn-portfolio mn-section" id="trabalhos" aria-labelledby="portfolio-title">
         <Reveal className="portfolio-heading"><div><div className="section-kicker"><span>03</span><i/> PORTFÓLIO</div><h2 id="portfolio-title">Olhe de perto.<br/><em>Repare nos detalhes.</em></h2></div><p>Trabalhos de Gel na Tips para observar formatos, cores e possibilidades de acabamento.</p></Reveal>
-        <div className="portfolio-grid">{GALERIA_TRABALHOS.map((item,i)=><motion.button type="button" key={item.id} className={'portfolio-card portfolio-card-'+(i+1)} onClick={()=>setActive(i)} aria-label={'Ampliar: '+item.titulo} whileHover={reduce ? undefined : { y:-7 }} transition={{duration:.25}}><Crop className={'portfolio-image portfolio-crop-'+(i+1)} label={item.alt}/><span className="portfolio-overlay"><span>0{i+1}</span><span>{item.titulo}</span><ArrowRight size={17}/></span><span className="portfolio-open" aria-hidden="true">+</span></motion.button>)}</div>
+        <div className="portfolio-grid">{GALERIA_TRABALHOS.map((item,i)=><motion.button type="button" key={item.id} className={'portfolio-card portfolio-card-'+(i+1)} onClick={()=>setActive(i)} aria-label={'Ampliar: '+item.titulo} whileHover={reduce ? undefined : { y:-4 }} transition={{duration:.25}}><img className="portfolio-image" src={item.src} alt="" loading="lazy" decoding="async"/><span className="portfolio-meta"><small>0{i+1} <i>·</i> GEL NA TIPS</small><span>{item.titulo}</span></span></motion.button>)}</div>
         <p className="portfolio-caption">TRABALHOS DA INSTRUTORA <span>·</span> GEL NA TIPS</p>
       </section>
 
       <section className="mn-audience mn-section"><Reveal className="audience-side"><div className="section-kicker"><span>04</span><i/> PARA QUEM É</div><h2>Seu próximo passo<br/><em>começa aqui.</em></h2><p>O curso foi pensado para diferentes momentos da jornada na área de unhas.</p></Reveal><div className="audience-list">{PERFIS_PUBLICO.map((p,i)=><Reveal className="audience-item" key={p.id} delay={i*.05}><span className="audience-index">0{i+1}</span><div><h3>{p.titulo}</h3><p>{p.descricao}</p></div><CheckCircle2 size={17}/></Reveal>)}</div></section>
 
-      <section className="mn-instructor mn-section" id="instrutora" aria-labelledby="instructor-title"><div className="instructor-orbit" aria-hidden="true"/><div className="instructor-inner"><Reveal className="instructor-visual"><Crop className="instructor-photo" label="Kamila Martins, nail designer e instrutora"/><div className="instructor-stamp"><span>KM</span><i>✳</i><small>NAIL DESIGNER<br/>& INSTRUTORA</small></div></Reveal><Reveal className="instructor-copy" delay={.1}><div className="section-kicker section-kicker-light"><span>05</span><i/> QUEM ENSINA</div><p className="overline">TÉCNICA COM EXPERIÊNCIA NO DIA A DIA</p><h2 id="instructor-title">{INSTRUTORA_CONFIG.nome}<em> — uma paixão por cada detalhe.</em></h2><p className="instructor-bio">{INSTRUTORA_CONFIG.resumoConfirmado}</p><div className="instructor-location"><MapPin size={16}/><span>{INSTRUTORA_CONFIG.localizacao}</span></div><a className="instructor-link" href="#investimento">Conheça o curso <ArrowRight size={16}/></a></Reveal></div></section>
+      <section className="mn-instructor mn-section" id="instrutora" aria-labelledby="instructor-title"><div className="instructor-inner"><Reveal className="instructor-visual"><Photo className="instructor-photo" src="/images/instructor-kamila-editorial.webp" alt="Kamila Martins trabalhando como nail designer"/><div className="instructor-stamp"><small>NAIL DESIGNER <i>·</i> ITAQUERA, SP</small></div></Reveal><Reveal className="instructor-copy" delay={.1}><div className="section-kicker section-kicker-light"><span>05</span><i/> QUEM ENSINA</div><p className="overline">TÉCNICA COM EXPERIÊNCIA NO DIA A DIA</p><h2 id="instructor-title">{INSTRUTORA_CONFIG.nome}<em> — uma paixão por cada detalhe.</em></h2><p className="instructor-bio">{INSTRUTORA_CONFIG.resumoConfirmado}</p><div className="instructor-location"><MapPin size={16}/><span>{INSTRUTORA_CONFIG.localizacao}</span></div><a className="instructor-link" href="#investimento">Conheça o curso <ArrowRight size={16}/></a></Reveal></div></section>
 
       <section className="mn-offer mn-section" id="investimento" aria-labelledby="offer-title"><Reveal className="offer-card"><div className="offer-left"><div className="section-kicker section-kicker-light"><span>06</span><i/> SUA INSCRIÇÃO</div><p className="overline">MASTER NAILS · GEL NA TIPS</p><h2 id="offer-title">Pronta para começar<br/><em>uma nova técnica?</em></h2><ul className="offer-checklist">{included.map((item)=><li key={item.id}><CheckCircle2 size={17}/><span>{item.titulo}</span></li>)}</ul></div><div className="offer-right"><div className="offer-price-label">INVESTIMENTO</div>{INVESTIMENTO_CONFIG.precoConfirmado?<p className="offer-price"><small>{INVESTIMENTO_CONFIG.moeda}</small>{INVESTIMENTO_CONFIG.valorPrincipal}</p>:<p className="offer-price offer-price-consult">Confira no checkout</p>}{INVESTIMENTO_CONFIG.mostrarParcelamento&&<p className="offer-installments">{INVESTIMENTO_CONFIG.textoParcelamento}</p>}<p className="offer-terms">Consulte formas de pagamento e condições vigentes na página oficial de inscrição.</p><CheckoutButton label="Quero minha vaga" subtext="" size="lg" className="offer-button" onUnconfiguredClick={onCheckoutUnavailable}/><p className="secure-note"><LockKeyhole size={13}/> Pagamento processado em ambiente seguro</p>{notice&&!ready&&<div className="checkout-notice" role="status">O endereço oficial de inscrição ainda precisa ser configurado.</div>}</div></Reveal><p className="offer-footnote">Conteúdo e condições conforme informações da página oficial de inscrição.</p></section>
 
