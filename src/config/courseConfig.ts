@@ -280,6 +280,12 @@ export interface ItemFaq {
 
 export const FAQ_ITEMS: ItemFaq[] = [
   {
+    id: 'iniciante',
+    pergunta: 'O curso é indicado para quem está começando?',
+    resposta:
+      'Sim. O conteúdo apresenta o processo desde a preparação da unha natural e também pode ajudar manicures e nail designers que desejam ampliar suas técnicas.',
+  },
+  {
     id: 'acesso-curso',
     pergunta: 'Como recebo acesso ao curso?',
     resposta:
