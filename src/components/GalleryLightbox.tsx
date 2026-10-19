@@ -90,6 +90,9 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
             src={activeItem.src}
             alt={activeItem.alt}
             className="lightbox-photo"
+            width={activeItem.width}
+            height={activeItem.height}
+            decoding="async"
           />
 
           <button

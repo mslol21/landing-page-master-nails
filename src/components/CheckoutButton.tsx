@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { LINK_CHECKOUT, isLinkConfigured } from '../config/courseConfig';
+import { LINK_CHECKOUT, isLinkConfigured, INVESTIMENTO_CONFIG } from '../config/courseConfig';
+import { trackCheckoutClick } from '../lib/analytics';
 
 interface CheckoutButtonProps {
   label?: string;
@@ -12,7 +13,7 @@ interface CheckoutButtonProps {
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
-  label = 'Quero minha vaga',
+  label = 'Quero começar agora',
   subtext = 'Acesse as informações e condições de pagamento',
   size = 'lg',
   fullWidthMobile = true,
@@ -32,6 +33,11 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
           investSection.scrollIntoView({ behavior: 'smooth' });
         }
       }
+    } else {
+      const checkoutValue = INVESTIMENTO_CONFIG.precoConfirmado
+        ? Number(INVESTIMENTO_CONFIG.valorPrincipal.replace(',', '.'))
+        : undefined;
+      trackCheckoutClick(checkoutValue);
     }
   };
 
