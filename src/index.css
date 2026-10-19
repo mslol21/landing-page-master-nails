@@ -679,3 +679,63 @@ html { scroll-padding-top: 78px; }
   .portfolio-meta > span { font-size: 15px; }
   .instructor-copy h2 { font-size: 46px; }
 }
+
+/* Ajustes após a revisão das capturas: dobra do hero, leitura e escala fotográfica. */
+.mn-hero { min-height: clamp(650px,calc(100svh - 76px),740px); }
+.hero-inner { min-height: inherit; padding-top: 42px; padding-bottom: 54px; grid-template-columns: minmax(0,1.04fr) minmax(360px,.96fr); gap: clamp(38px,5.5vw,82px); }
+.hero-copy h1 { max-width: 650px; font-size: clamp(60px,5.3vw,82px); line-height: .98; letter-spacing: -.045em; }
+.hero-copy h1 em { font-size: .76em; line-height: 1.04; letter-spacing: -.035em; }
+.hero-art { min-height: clamp(430px,36vw,520px); }
+.hero-lede { font-size: 14px; line-height: 1.85; }
+.hero-proof { font-size: 10px; }
+.intro-heading h2 { max-width: 660px; font-size: clamp(48px,4.4vw,64px); line-height: 1.04; letter-spacing: -.045em; }
+.intro-copy p { font-size: 14px; line-height: 1.85; }
+.fact-item strong { font-size: 24px; }
+.fact-item p { font-size: 11px; line-height: 1.8; }
+.intro-image-wrap { max-width: 630px; height: clamp(420px,38vw,500px); }
+.detail-photo { object-position: center 50%; }
+.image-note { font-size: 8px; }
+.curriculum-row { min-height: 112px; grid-template-columns: 54px minmax(250px,1fr) minmax(280px,1fr) 18px; gap: 24px; }
+.curriculum-row h3 { font-size: 25px; }
+.curriculum-row p { font-size: 12px; line-height: 1.8; }
+.portfolio-grid { max-width: 1100px; gap: 24px 18px; }
+.portfolio-image, .portfolio-card-1 .portfolio-image, .portfolio-card-2 .portfolio-image, .portfolio-card-3 .portfolio-image { aspect-ratio: 1.88 / 1; }
+.portfolio-card-4 .portfolio-image { aspect-ratio: 1.07 / 1; }
+.portfolio-card-5 .portfolio-image { aspect-ratio: 1.2 / 1; }
+.portfolio-card-6 .portfolio-image { aspect-ratio: 1.3 / 1; }
+.portfolio-meta { gap: 8px; padding-top: 15px; padding-bottom: 15px; }
+.portfolio-meta small { font-size: 8px; }
+.portfolio-meta > span { font-size: 22px; }
+.portfolio-heading > p, .audience-side > p, .faq-intro > p { font-size: 13px; }
+.audience-item p { font-size: 11px; }
+.instructor-bio { font-size: 13px; }
+.offer-checklist li { font-size: 12px; }
+.offer-terms { font-size: 10px; }
+.faq-content [role=region] { font-size: 12px !important; }
+@media (max-width: 1050px) {
+  .hero-inner { grid-template-columns: minmax(0,1fr) minmax(320px,.88fr); gap: 34px; }
+  .hero-copy h1 { font-size: clamp(58px,6.3vw,74px); }
+  .curriculum-row { grid-template-columns: 44px 1fr 1fr 16px; gap: 16px; }
+}
+@media (max-width: 760px) {
+  .mn-hero { min-height: auto; }
+  .hero-inner { min-height: auto; grid-template-columns: 1fr; padding-top: 48px; padding-bottom: 56px; gap: 30px; }
+  .hero-copy h1 { max-width: 580px; font-size: clamp(54px,11vw,68px); }
+  .hero-copy h1 em { font-size: .78em; }
+  .hero-art { min-height: min(108vw,500px); }
+  .intro-heading h2 { font-size: clamp(46px,10.5vw,60px); }
+  .intro-copy p { font-size: 13px; }
+  .intro-image-wrap { width: 100%; max-width: none; height: 112vw; max-height: 480px; }
+  .curriculum-row { grid-template-columns: 36px minmax(0,1fr) 16px; min-height: 90px; gap: 12px; }
+  .curriculum-row h3 { font-size: 21px; }
+  .curriculum-row p { font-size: 10px; }
+  .portfolio-grid { gap: 17px 12px; }
+  .portfolio-image, .portfolio-card-1 .portfolio-image, .portfolio-card-2 .portfolio-image, .portfolio-card-3 .portfolio-image { aspect-ratio: 1.6 / 1; }
+  .portfolio-card-4 .portfolio-image { aspect-ratio: 1.07 / 1; }
+  .portfolio-card-5 .portfolio-image { aspect-ratio: 1.2 / 1; }
+  .portfolio-card-6 .portfolio-image { aspect-ratio: 1.3 / 1; }
+  .portfolio-meta > span { font-size: 17px; }
+}
+@media (max-width: 400px) {
+  .hero-copy h1 { font-size: 50px; }
+}
