@@ -773,3 +773,60 @@ html { scroll-padding-top: 78px; }
 @media (max-width: 400px) {
   .hero-copy h1 { font-size: 50px; }
 }
+
+/* Leitura e hierarquia comercial: ampliar textos de apoio e evidenciar promessas-chave. */
+.mn-nav a { font-size: 12px; }
+.eyebrow, .section-kicker { font-size: 10px; letter-spacing: .17em; }
+.overline { font-size: 10px; letter-spacing: .15em; }
+.hero-lede { max-width: 500px; font-size: 17px; line-height: 1.7; }
+.hero-lede strong { color: #efd3a4; font-weight: 700; }
+.intro-copy strong { color: #765128; font-weight: 700; }
+.hero-actions { margin-top: 26px; }
+.hero-buy a, .header-cta a, .offer-button a, .last-call-button a, .intro-buy a { min-height: 58px !important; font-size: 13px !important; }
+.hero-buy > span, .last-call-button > span, .intro-buy > span { font-size: 11px !important; }
+.hero-secondary { font-size: 13px; }
+.hero-proof { margin-top: 30px; font-size: 11px; }
+.hero-investment { font-size: 13px; }
+.hero-investment strong { font-size: 24px; }
+.intro-copy p, .portfolio-heading > p, .audience-side > p, .faq-intro > p { font-size: 15px; line-height: 1.8; }
+.conversion-benefit h3 { font-size: 28px; }
+.conversion-benefit p { font-size: 14px; }
+.conversion-cta > span, .portfolio-cta > p { font-size: 22px; }
+.curriculum-head > p { font-size: 14px; line-height: 1.8; }
+.curriculum-row h3 { font-size: 27px; }
+.curriculum-row p { font-size: 14px; }
+.portfolio-meta small { font-size: 10px; }
+.portfolio-meta > span { font-size: 24px; }
+.portfolio-caption { font-size: 10px; }
+.audience-item h3 { font-size: 24px; }
+.audience-item p { font-size: 14px; line-height: 1.75; }
+.instructor-bio { font-size: 15px; line-height: 1.85; }
+.instructor-location, .instructor-link { font-size: 12px; }
+.offer-checklist li { font-size: 14px; }
+.offer-price-label { font-size: 10px; }
+.offer-terms { font-size: 12px; }
+.secure-note { font-size: 10px; }
+.offer-footnote { font-size: 11px; }
+.faq-content [role=region] { font-size: 14px !important; line-height: 1.8 !important; }
+.mn-footer > p, .footer-copy { font-size: 12px; }
+@media (max-width: 760px) {
+  .mn-nav a { font-size: 15px; }
+  .eyebrow, .section-kicker { font-size: 9px; }
+  .overline { font-size: 9px; }
+  .hero-lede { max-width: 560px; font-size: 17px; }
+  .hero-proof { font-size: 11px; line-height: 1.6; }
+  .hero-investment { font-size: 13px; }
+  .intro-copy p, .portfolio-heading > p, .audience-side > p, .faq-intro > p { font-size: 15px; }
+  .conversion-benefit p, .audience-item p, .curriculum-row p { font-size: 13px; }
+  .conversion-benefit h3, .audience-item h3 { font-size: 24px; }
+  .curriculum-row h3 { font-size: 22px; }
+  .portfolio-meta small, .portfolio-caption { font-size: 9px; }
+  .portfolio-meta > span { font-size: 19px; }
+  .instructor-bio { font-size: 15px; }
+  .offer-checklist li { font-size: 14px; }
+  .offer-terms, .faq-content [role=region] { font-size: 13px !important; }
+  .secure-note, .offer-footnote { font-size: 10px; }
+  .hero-buy a, .offer-button a, .last-call-button a, .intro-buy a { min-height: 56px !important; font-size: 13px !important; }
+  .mobile-purchase-bar > div span { font-size: 10px; }
+  .mobile-purchase-bar > div strong { font-size: 23px; }
+}
