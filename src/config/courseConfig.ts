@@ -1,14 +1,14 @@
 /**
  * ============================================================================
- * CONFIGURAÇÃO CENTRAL DA LANDING PAGE — MASTER NAILS: GEL NA TIPS
+ * CONFIGURAÇÃO CENTRAL DA LANDING PAGE — CHAVE DO SUCESSO MASTER NAILS: GEL NA TIPS
  * ============================================================================
  * Substitua as constantes e os campos abaixo conforme confirmação da instrutora
  * Kamila Martins. Nenhum dado não confirmado é exibido como fato na página.
  */
 
 // 1. LINKS PRINCIPAIS (Substitua pelos endereços reais)
-export const LINK_CHECKOUT = '[LINK_CHECKOUT]';
-export const LINK_INSTAGRAM = '[LINK_INSTAGRAM]';
+export const LINK_CHECKOUT = 'https://pay.kiwify.com.br/9ohRuBR';
+export const LINK_INSTAGRAM = 'https://www.instagram.com/espaco_kamilamartins/';
 export const LINK_WHATSAPP = '[LINK_WHATSAPP]';
 
 /**
@@ -29,11 +29,12 @@ export const INSTRUTORA_CONFIG = {
   nome: 'Kamila Martins',
   atuacao: 'Nail Designer e Instrutora',
   localizacao: 'Itaquera, São Paulo — SP',
-  fotoUrl: '/images/kamila-martins-instrutora.jpg',
+  fotoUrl: '[INSERIR: foto real da Kamila em alta resolução]',
+  instagramUrl: LINK_INSTAGRAM,
   fotoAlt:
-    'Retrato de Kamila Martins, nail designer e instrutora do curso Master Nails: Gel na Tips',
+    'Foto real de Kamila Martins, nail designer e instrutora do curso Gel na Tips',
   resumoConfirmado:
-    'Nail designer e instrutora com atuação em Itaquera, São Paulo. No curso Master Nails: Gel na Tips, conduz as aulas de forma prática e estruturada, demonstrando cada etapa do processo técnico — da preparação da lâmina natural ao acabamento e manutenção.',
+    'Nail designer e instrutora em Itaquera, São Paulo, com atuação em alongamento de unhas, estrutura, durabilidade e acabamento. [INSERIR: anos de experiência]. [INSERIR: número de clientes atendidas]. [INSERIR: formação e certificações].',
   // Campo opcional caso deseje adicionar informações biográficas confirmadas futuramente:
   notaComplementarOpcional: '',
 };
@@ -41,8 +42,8 @@ export const INSTRUTORA_CONFIG = {
 // 3. BENEFÍCIOS CONFIRMADOS DO HERO (Máximo de 3 benefícios confirmados)
 export const HERO_BENEFICIOS_CONFIRMADOS = [
   'Aulas passo a passo',
-  'Certificado de conclusão',
-  'Acesso online',
+  'Certificado incluso',
+  'Acesso imediato e vitalício',
 ] as const;
 
 // 4. TÓPICOS DO CONTEÚDO PROGRAMÁTICO (Confirmados nas referências)
@@ -51,6 +52,7 @@ export interface TopicoAprendizado {
   numero: string;
   titulo: string;
   descricao: string;
+  resultado: string;
 }
 
 export const TOPICOS_APRENDIZADO: TopicoAprendizado[] = [
@@ -60,6 +62,7 @@ export const TOPICOS_APRENDIZADO: TopicoAprendizado[] = [
     titulo: 'Preparação da unha natural',
     descricao:
       'Higienização, preparo correto da lâmina e aplicação dos preparadores para favorecer a aderência sem agredir a unha natural.',
+    resultado: 'Ao final, você sabe preparar a lâmina natural antes do alongamento.',
   },
   {
     id: 'aplicacao-tips',
@@ -67,6 +70,7 @@ export const TOPICOS_APRENDIZADO: TopicoAprendizado[] = [
     titulo: 'Aplicação correta das tips',
     descricao:
       'Escolha do tamanho ideal, encaixe simétrico, colagem sem bolhas de ar e nivelamento da transição entre tip e lâmina.',
+    resultado: 'Ao final, você sabe escolher, encaixar e aplicar as tips.',
   },
   {
     id: 'curvatura-estrutura',
@@ -74,6 +78,7 @@ export const TOPICOS_APRENDIZADO: TopicoAprendizado[] = [
     titulo: 'Curvatura e estrutura',
     descricao:
       'Construção em gel com controle de produto, distribuição equilibrada do ponto de tensão e simetria estrutural.',
+    resultado: 'Ao final, você entende como construir uma estrutura equilibrada.',
   },
   {
     id: 'lixamento-tecnico',
@@ -81,6 +86,7 @@ export const TOPICOS_APRENDIZADO: TopicoAprendizado[] = [
     titulo: 'Lixamento técnico',
     descricao:
       'Sequência de lixamento para alinhamento de paredes laterais, ponta, superfície uniforme e espessura natural.',
+    resultado: 'Ao final, você sabe refinar o formato e nivelar a superfície.',
   },
   {
     id: 'acabamento',
@@ -88,6 +94,7 @@ export const TOPICOS_APRENDIZADO: TopicoAprendizado[] = [
     titulo: 'Acabamento',
     descricao:
       'Refinamento na área da cutícula, selagem precisa e finalização com brilho uniforme e aspecto profissional.',
+    resultado: 'Ao final, você sabe finalizar o alongamento com acabamento uniforme.',
   },
   {
     id: 'manutencao-remocao',
@@ -95,6 +102,7 @@ export const TOPICOS_APRENDIZADO: TopicoAprendizado[] = [
     titulo: 'Manutenção e remoção correta',
     descricao:
       'Procedimentos seguros para manutenção periódica do alongamento e remoção técnica preservando a saúde da lâmina natural.',
+    resultado: 'Ao final, você conhece etapas de manutenção e remoção técnica.',
   },
 ];
 
@@ -126,9 +134,9 @@ export const PERFIS_PUBLICO: PerfilPublico[] = [
   },
   {
     id: 'nova-habilidade',
-    titulo: 'Quem busca desenvolver uma nova habilidade profissional',
+    titulo: 'Mulheres que querem desenvolver uma nova habilidade',
     descricao:
-      'Para quem deseja estudar online no próprio ritmo e adquirir domínio técnico prático em Gel na Tips.',
+      'Para quem deseja aprender uma técnica que pode oferecer como serviço, conforme sua prática e demanda local.',
   },
 ];
 
@@ -160,7 +168,7 @@ export const ITENS_INCLUIDOS_CONFIG: ItemIncluido[] = [
     id: 'certificado',
     titulo: 'Certificado de conclusão',
     descricao:
-      'Emissão de certificado após a conclusão das aulas do curso Master Nails: Gel na Tips.',
+      'Emissão de certificado após a conclusão das aulas do curso Chave do Sucesso Master Nails: Gel na Tips.',
     confirmado: true,
   },
   // Itens mencionados nas referências que dependem de confirmação das regras atuais da turma:
@@ -191,6 +199,8 @@ export const INVESTIMENTO_CONFIG = {
   precoConfirmado: true,
   moeda: 'R$',
   valorPrincipal: '49,90', // Valor presente na referência visual; edite aqui caso tenha sido atualizado
+  parcelamentoPlaceholder: '[INSERIR: número de parcelas e valor por parcela, se disponível]',
+  formasPagamento: 'No checkout Kiwify, as opções podem incluir Pix, cartão de crédito e boleto. As formas habilitadas para esta oferta serão exibidas na página de pagamento.',
   observacaoValor:
     'Consulte o valor vigente, opções de parcelamento e formas de pagamento diretamente na página oficial de inscrição.',
 
@@ -199,7 +209,12 @@ export const INVESTIMENTO_CONFIG = {
   valorAnterior: 'R$ 197,90',
 
   mostrarParcelamento: false,
-  textoParcelamento: 'Em até 12x no cartão (verificar condições no checkout)',
+  textoParcelamento: '[INSERIR: condição de parcelamento confirmada no checkout]',
+};
+
+// Se não houver garantia incondicional confirmada, remova o bloco visual de garantia na oferta e a pergunta correspondente do FAQ.
+export const GARANTIA_CONFIG = {
+  prazoPlaceholder: '[INSERIR: X dias de garantia incondicional]',
 };
 
 // 8. IMAGENS E GALERIA DE TRABALHOS
@@ -210,12 +225,14 @@ export interface ItemGaleria {
   alt: string;
   titulo: string;
   detalheTecnico: string;
+  width: number;
+  height: number;
 }
 
 export const IMAGENS_PAGINA = {
   heroPrincipal: {
-    src: '/images/hero-kamila-editorial.webp',
-    alt: 'Nail designer realizando uma aplicação de unhas em um estúdio profissional',
+    src: '/images/nail-05.webp',
+    alt: 'Unhas rosadas com francesinha branca e detalhe floral',
     legenda: 'Master Nails — Gel na Tips',
   },
   detalheCurso: {
@@ -225,48 +242,31 @@ export const IMAGENS_PAGINA = {
   },
 };
 
+// Referências visuais disponíveis no projeto. Não atribuir estas imagens a alunas ou à instrutora.
 export const GALERIA_TRABALHOS: ItemGaleria[] = [
   {
-    id: 'trabalho-1',
-    src: '/images/nail-01.webp',
-    alt: 'Unhas em tons nude e marrom com acabamento perolado',
-    titulo: 'Nude perolado',
-    detalheTecnico: 'Tons naturais com brilho delicado',
-  },
-  {
-    id: 'trabalho-2',
-    src: '/images/nail-02.webp',
-    alt: 'Unhas vermelhas com detalhe floral branco',
-    titulo: 'Vermelho com detalhe floral',
-    detalheTecnico: 'Cor intensa com nail art delicada',
-  },
-  {
-    id: 'trabalho-3',
-    src: '/images/nail-03.webp',
-    alt: 'Unhas em tons azuis com desenho floral e pedrarias',
-    titulo: 'Azul floral',
-    detalheTecnico: 'Composição floral com detalhes em brilho',
-  },
-  {
-    id: 'trabalho-4',
+    id: 'referencia-1',
     src: '/images/nail-04.webp',
-    alt: 'Detalhe de unha alongada em tom rosa translúcido',
-    titulo: 'Rosa translúcido',
-    detalheTecnico: 'Acabamento delicado em close',
+    alt: 'Close-up de uma unha alongada em tom rosado claro',
+    titulo: 'Acabamento rosado',
+    detalheTecnico: 'Referência visual · acabamento em tom rosado',
+    width: 300, height: 280,
   },
   {
-    id: 'trabalho-5',
+    id: 'referencia-2',
     src: '/images/nail-05.webp',
-    alt: 'Unhas em tons rosados com francesinha branca e desenho floral',
-    titulo: 'Francesinha floral',
-    detalheTecnico: 'Francesinha com decoração artesanal',
+    alt: 'Unhas em tons rosados com francesinha branca e decoração floral',
+    titulo: 'Francesinha com detalhe floral',
+    detalheTecnico: 'Referência visual · francesinha e decoração floral',
+    width: 300, height: 250,
   },
   {
-    id: 'trabalho-6',
+    id: 'referencia-3',
     src: '/images/nail-06.webp',
-    alt: 'Unhas em tom nude rosado com pontas brancas',
-    titulo: 'Francesinha clássica',
-    detalheTecnico: 'Base rosada com pontas brancas',
+    alt: 'Unhas em formato amendoado com esmalte rosa translúcido',
+    titulo: 'Rosa translúcido',
+    detalheTecnico: 'Referência visual · acabamento rosa translúcido',
+    width: 300, height: 230,
   },
 ];
 
@@ -280,52 +280,52 @@ export interface ItemFaq {
 
 export const FAQ_ITEMS: ItemFaq[] = [
   {
-    id: 'acesso-curso',
-    pergunta: 'Como recebo acesso ao curso?',
+    id: 'iniciante',
+    pergunta: 'Preciso ter experiência?',
     resposta:
-      'Após a confirmação da inscrição na plataforma de pagamento, as instruções e os dados de acesso à área de aulas são enviados para o e-mail cadastrado no momento da compra.',
-    campoConfiguravelNota:
-      'Configurável em src/config/courseConfig.ts caso queira especificar o nome da plataforma.',
+      'Não. O curso é indicado para iniciantes e começa pela preparação da unha natural.',
   },
   {
-    id: 'curso-online',
-    pergunta: 'O curso é online?',
+    id: 'materiais',
+    pergunta: 'Que materiais preciso ter? Quanto custa o kit?',
     resposta:
-      'Sim. O curso Master Nails: Gel na Tips é 100% online, permitindo que você assista às aulas no seu próprio ritmo, de onde estiver.',
+      'Materiais necessários: [INSERIR: lista de materiais]. Custo aproximado do kit: [INSERIR: valor atualizado do kit].',
   },
   {
-    id: 'assistir-celular',
-    pergunta: 'Posso assistir pelo celular?',
+    id: 'aulas-carga',
+    pergunta: 'Quantas aulas são e quanto tempo de conteúdo?',
     resposta:
-      'Sim. As aulas online podem ser acessadas pelo navegador do celular, tablet ou computador conectado à internet.',
+      'O curso tem [INSERIR: número de aulas] e [INSERIR: carga horária total] de conteúdo.',
   },
   {
-    id: 'certificado',
-    pergunta: 'Há certificado?',
+    id: 'garantia',
+    pergunta: 'Há garantia? E se eu não gostar?',
     resposta:
-      'Sim. O curso inclui certificado de conclusão para as alunas que finalizarem o conteúdo programático.',
+      '[INSERIR: prazo e condições da garantia incondicional]. Consulte também as condições apresentadas pela Kiwify antes de concluir a compra.',
+  },
+  {
+    id: 'acesso',
+    pergunta: 'Por quanto tempo tenho acesso e como recebo?',
+    resposta:
+      'O acesso é imediato e vitalício. Após a confirmação do pagamento, as instruções de acesso são enviadas ao e-mail usado na compra.',
   },
   {
     id: 'suporte',
-    pergunta: 'Há suporte?',
+    pergunta: 'Como tiro dúvidas? Há suporte?',
     resposta:
-      'As condições e canais de suporte para dúvidas das alunas devem ser conferidas nas informações vigentes da turma na página de inscrição.',
-    campoConfiguravelNota:
-      'Edite este campo em src/config/courseConfig.ts após confirmar o canal de atendimento (ex.: plataforma ou WhatsApp).',
+      'Canal de suporte: [INSERIR: canal confirmado]. Horário de atendimento: [INSERIR: dias e horários].',
   },
   {
-    id: 'formas-pagamento',
-    pergunta: 'Quais são as formas de pagamento?',
+    id: 'certificado-validade',
+    pergunta: 'O certificado é válido para atender clientes?',
     resposta:
-      'As formas de pagamento disponíveis (como Pix, cartão de crédito ou boleto) e as condições de parcelamento vigentes são exibidas de forma detalhada e segura diretamente na página de checkout ao clicar em "Quero minha vaga".',
+      'O curso emite certificado de conclusão. [INSERIR: informação confirmada sobre validade, reconhecimento e limites do certificado].',
   },
   {
-    id: 'prazo-garantia',
-    pergunta: 'Existe prazo ou garantia?',
+    id: 'celular',
+    pergunta: 'Posso assistir pelo celular?',
     resposta:
-      'O período de acesso às aulas e o prazo legal de garantia aplicável à compra são informados nos termos da plataforma de pagamento antes da conclusão da sua inscrição.',
-    campoConfiguravelNota:
-      'Edite este campo em src/config/courseConfig.ts com o tempo exato de acesso e prazo de garantia confirmados.',
+      'Sim. As aulas podem ser acessadas pelo celular, tablet ou computador com conexão à internet.',
   },
 ];
 

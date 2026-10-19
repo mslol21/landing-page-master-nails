@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 import { ItemFaq } from '../config/courseConfig';
 
 interface FaqAccordionProps {
@@ -40,7 +40,7 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items }) => {
                   }`}
                   aria-hidden="true"
                 >
-                  <ChevronDown className="h-4 w-4" />
+                  {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                 </span>
               </button>
             </h3>
