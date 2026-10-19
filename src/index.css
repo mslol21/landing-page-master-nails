@@ -712,6 +712,40 @@ html { scroll-padding-top: 78px; }
 .offer-checklist li { font-size: 12px; }
 .offer-terms { font-size: 10px; }
 .faq-content [role=region] { font-size: 12px !important; }
+.hero-proof { flex-wrap: wrap; row-gap: 6px; }
+.hero-investment { margin: 14px 0 0; color: rgba(248,242,233,.62); font-size: 11px; letter-spacing: .03em; }
+.hero-investment strong { margin-left: 4px; color: #f0d7ad; font-family: var(--serif); font-size: 20px; font-weight: 600; }
+.mn-conversion-intro { padding-bottom: 94px; }
+.mn-conversion-intro .intro-grid { margin-bottom: 34px; }
+.conversion-benefits { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.conversion-benefit { position: relative; min-height: 180px; padding: 26px 30px 25px 0; }
+.conversion-benefit + .conversion-benefit { padding-left: 30px; border-left: 1px solid var(--line); }
+.conversion-benefit > span { color: #ad8759; font-family: var(--serif); font-size: 16px; }
+.conversion-benefit > svg { position: absolute; top: 29px; right: 26px; color: #a58154; }
+.conversion-benefit h3 { margin: 21px 0 8px; color: var(--ink); font-family: var(--serif); font-size: 25px; font-weight: 600; }
+.conversion-benefit p { max-width: 270px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.conversion-cta, .portfolio-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.conversion-cta { margin-top: 28px; }
+.conversion-cta > span, .portfolio-cta > p { margin: 0; color: var(--ink-soft); font-family: var(--serif); font-size: 20px; }
+.intro-buy a { min-height: 54px !important; padding-inline: 25px !important; border: 1px solid var(--ink) !important; border-radius: 2px !important; background: var(--ink) !important; color: #fffaf2 !important; font-size: 11px !important; font-weight: 700 !important; box-shadow: none !important; }
+.intro-buy a:hover { transform: translateY(-2px); background: var(--wine) !important; }
+.intro-buy > span { color: var(--muted) !important; font-size: 9px !important; }
+.portfolio-cta { max-width: 1100px; margin: 42px auto 0; padding-top: 25px; border-top: 1px solid var(--line); }
+.portfolio-cta > p { font-size: 18px; }
+.portfolio-cta .intro-buy > span { display: none; }
+@media (max-width: 760px) {
+  .mn-conversion-intro { padding-bottom: 66px; }
+  .conversion-benefits { grid-template-columns: 1fr; }
+  .conversion-benefit { min-height: 0; padding: 22px 0; }
+  .conversion-benefit + .conversion-benefit { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .conversion-benefit h3 { margin-top: 11px; font-size: 23px; }
+  .conversion-benefit > svg { top: 24px; right: 5px; }
+  .conversion-cta, .portfolio-cta { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .conversion-cta .intro-buy, .portfolio-cta .intro-buy { width: 100% !important; }
+  .conversion-cta .intro-buy a, .portfolio-cta .intro-buy a { width: 100% !important; justify-content: center !important; }
+  .portfolio-cta { margin-top: 28px; }
+  .hero-investment { margin-top: 4px; }
+}
 @media (max-width: 1050px) {
   .hero-inner { grid-template-columns: minmax(0,1fr) minmax(320px,.88fr); gap: 34px; }
   .hero-copy h1 { font-size: clamp(58px,6.3vw,74px); }
