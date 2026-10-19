@@ -43,8 +43,8 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   return (
     <div className={`inline-flex flex-col ${fullWidthMobile ? 'w-full sm:w-auto' : ''} ${className}`}>
       <a
-        href={LINK_CHECKOUT}
-        data-checkout-link={LINK_CHECKOUT}
+        href={configured ? LINK_CHECKOUT : '#investimento'}
+        data-checkout-link={configured ? LINK_CHECKOUT : ''}
         onClick={handleClick}
         target={configured ? '_blank' : undefined}
         rel={configured ? 'noopener noreferrer' : undefined}

@@ -1,827 +1,103 @@
 import React, { useState } from 'react';
-import {
-  CheckCircle2,
-  Sparkles,
-  Award,
-  PlayCircle,
-  Layers,
-  Scissors,
-  ShieldCheck,
-  Sliders,
-  RefreshCw,
-  UserCheck,
-  MapPin,
-  ZoomIn,
-  Instagram,
-  MessageCircle,
-  Lock,
-  Info,
-} from 'lucide-react';
-import {
-  LINK_CHECKOUT,
-  LINK_INSTAGRAM,
-  LINK_WHATSAPP,
-  isLinkConfigured,
-  INSTRUTORA_CONFIG,
-  HERO_BENEFICIOS_CONFIRMADOS,
-  TOPICOS_APRENDIZADO,
-  PERFIS_PUBLICO,
-  ITENS_INCLUIDOS_CONFIG,
-  INVESTIMENTO_CONFIG,
-  IMAGENS_PAGINA,
-  GALERIA_TRABALHOS,
-  FAQ_ITEMS,
-  RODAPE_CONFIG,
-} from './config/courseConfig';
+import { motion, useReducedMotion } from 'motion/react';
+import { ArrowDown, ArrowRight, CheckCircle2, CirclePlay, Instagram, LockKeyhole, MapPin, Menu, Sparkles, X } from 'lucide-react';
+import { LINK_CHECKOUT, LINK_INSTAGRAM, LINK_WHATSAPP, isLinkConfigured, INSTRUTORA_CONFIG, TOPICOS_APRENDIZADO, PERFIS_PUBLICO, ITENS_INCLUIDOS_CONFIG, INVESTIMENTO_CONFIG, GALERIA_TRABALHOS, FAQ_ITEMS } from './config/courseConfig';
 import { CheckoutButton } from './components/CheckoutButton';
 import { GalleryLightbox } from './components/GalleryLightbox';
 import { FaqAccordion } from './components/FaqAccordion';
 
-const TOPIC_ICONS: Record<string, React.ReactNode> = {
-  preparacao: <ShieldCheck className="h-5 w-5 text-gold-400" aria-hidden="true" />,
-  'aplicacao-tips': <Layers className="h-5 w-5 text-gold-400" aria-hidden="true" />,
-  'curvatura-estrutura': <Sliders className="h-5 w-5 text-gold-400" aria-hidden="true" />,
-  'lixamento-tecnico': <Scissors className="h-5 w-5 text-gold-400" aria-hidden="true" />,
-  acabamento: <Sparkles className="h-5 w-5 text-gold-400" aria-hidden="true" />,
-  'manutencao-remocao': <RefreshCw className="h-5 w-5 text-gold-400" aria-hidden="true" />,
-};
-
-export function App() {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [checkoutNoticeVisible, setCheckoutNoticeVisible] = useState(false);
-
-  const itensConfirmados = ITENS_INCLUIDOS_CONFIG.filter((item) => item.confirmado);
-  const itensPendentesConfirmacao = ITENS_INCLUIDOS_CONFIG.filter((item) => !item.confirmado);
-
-  const instagramConfigured = isLinkConfigured(LINK_INSTAGRAM);
-  const whatsappConfigured = isLinkConfigured(LINK_WHATSAPP);
-  const checkoutConfigured = isLinkConfigured(LINK_CHECKOUT);
-
-  const handleOpenLightbox = (index: number) => {
-    setLightboxIndex(index);
-  };
-
-  const handleCloseLightbox = () => {
-    setLightboxIndex(null);
-  };
-
-  const handlePrevLightbox = () => {
-    setLightboxIndex((prev) =>
-      prev === null ? null : (prev - 1 + GALERIA_TRABALHOS.length) % GALERIA_TRABALHOS.length
-    );
-  };
-
-  const handleNextLightbox = () => {
-    setLightboxIndex((prev) =>
-      prev === null ? null : (prev + 1) % GALERIA_TRABALHOS.length
-    );
-  };
-
-  const handleUnconfiguredCheckout = () => {
-    setCheckoutNoticeVisible(true);
-    const investEl = document.getElementById('investimento');
-    if (investEl) {
-      investEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-obsidian-950 text-zinc-100 flex flex-col">
-      {/* Link de salto para acessibilidade por teclado */}
-      <a
-        href="#conteudo-principal"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-gold-400 focus:px-4 focus:py-2.5 focus:font-semibold focus:text-obsidian-950"
-      >
-        Pular para o conteúdo principal
-      </a>
-
-      {/* CABEÇALHO */}
-      <header className="sticky top-0 z-40 border-b border-zinc-800/80 bg-obsidian-950/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
-          <a
-            href="#"
-            className="flex flex-col focus-visible:rounded"
-            aria-label="Master Nails: Gel na Tips — Início"
-          >
-            <span className="font-serif text-lg sm:text-xl font-semibold tracking-wider text-zinc-100">
-              MASTER NAILS <span className="text-gold-400">•</span> GEL NA TIPS
-            </span>
-            <span className="text-[11px] uppercase tracking-widest text-zinc-400">
-              Por {INSTRUTORA_CONFIG.nome}
-            </span>
-          </a>
-
-          <nav aria-label="Navegação principal" className="hidden md:flex items-center gap-7 text-sm text-zinc-300">
-            <a href="#sobre-o-curso" className="hover:text-gold-300 transition-colors">
-              O Curso
-            </a>
-            <a href="#o-que-vai-aprender" className="hover:text-gold-300 transition-colors">
-              Conteúdo
-            </a>
-            <a href="#galeria" className="hover:text-gold-300 transition-colors">
-              Trabalhos
-            </a>
-            <a href="#instrutora" className="hover:text-gold-300 transition-colors">
-              Instrutora
-            </a>
-            <a href="#duvidas" className="hover:text-gold-300 transition-colors">
-              Dúvidas
-            </a>
-          </nav>
-
-          <div>
-            <CheckoutButton
-              label="Quero minha vaga"
-              subtext=""
-              size="md"
-              fullWidthMobile={false}
-              onUnconfiguredClick={handleUnconfiguredCheckout}
-            />
-          </div>
-        </div>
-      </header>
-
-      <main id="conteudo-principal" className="flex-1">
-        {/* 1. HERO */}
-        <section
-          aria-labelledby="hero-heading"
-          className="relative overflow-hidden border-b border-zinc-900 pt-10 pb-16 sm:py-20 lg:py-24"
-        >
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-              {/* Coluna de Texto */}
-              <div className="lg:col-span-7">
-                <div className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-obsidian-900 px-3.5 py-1.5 text-xs sm:text-sm text-gold-300 mb-6">
-                  <Sparkles className="h-3.5 w-3.5 text-gold-400 shrink-0" aria-hidden="true" />
-                  <span>
-                    Curso Online • <strong>{INSTRUTORA_CONFIG.nome}</strong> ({INSTRUTORA_CONFIG.atuacao})
-                  </span>
-                </div>
-
-                <h1
-                  id="hero-heading"
-                  className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-zinc-50"
-                >
-                  Aprenda Gel na Tips com técnica, estrutura e acabamento profissional
-                </h1>
-
-                <p className="mt-5 text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-300 max-w-2xl">
-                  Um curso online para aprender no seu ritmo, seja para começar do zero ou aperfeiçoar sua técnica.
-                </p>
-
-                {/* Até 3 benefícios confirmados */}
-                <ul
-                  aria-label="Benefícios confirmados do curso"
-                  className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4"
-                >
-                  {HERO_BENEFICIOS_CONFIRMADOS.map((beneficio) => (
-                    <li
-                      key={beneficio}
-                      className="flex items-center gap-2.5 rounded-lg border border-zinc-800/90 bg-obsidian-900/80 px-3.5 py-3 text-sm font-medium text-zinc-200"
-                    >
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-gold-400" aria-hidden="true" />
-                      <span>{beneficio}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA em destaque */}
-                <div className="mt-8 sm:mt-10">
-                  <CheckoutButton
-                    label="Quero minha vaga"
-                    subtext="Acesse as informações e condições de pagamento"
-                    size="lg"
-                    onUnconfiguredClick={handleUnconfiguredCheckout}
-                  />
-                </div>
-              </div>
-
-              {/* Coluna da Imagem Principal do Hero */}
-              <div className="lg:col-span-5">
-                <figure className="relative mx-auto max-w-md lg:max-w-none overflow-hidden rounded-2xl border border-zinc-800 bg-obsidian-900 shadow-2xl">
-                  <div className="aspect-[4/5] w-full overflow-hidden bg-obsidian-850">
-                    <img
-                      src={IMAGENS_PAGINA.heroPrincipal.src}
-                      alt={IMAGENS_PAGINA.heroPrincipal.alt}
-                      width={800}
-                      height={1000}
-                      loading="eager"
-                      fetchPriority="high"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <figcaption className="border-t border-zinc-800/90 bg-obsidian-900/95 px-5 py-4">
-                    <p className="text-xs uppercase tracking-widest text-gold-400 font-medium">
-                      Master Nails: Gel na Tips
-                    </p>
-                    <p className="mt-1 text-sm text-zinc-300">
-                      Ministrado por <strong className="text-zinc-100">{INSTRUTORA_CONFIG.nome}</strong>, nail designer e instrutora
-                    </p>
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 2. APRESENTAÇÃO DO CURSO */}
-        <section
-          id="sobre-o-curso"
-          aria-labelledby="apresentacao-heading"
-          className="border-b border-zinc-900 py-16 sm:py-24 bg-obsidian-900/40"
-        >
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-              <div className="lg:col-span-6 order-2 lg:order-1">
-                <figure className="overflow-hidden rounded-2xl border border-zinc-800 bg-obsidian-900">
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-obsidian-850">
-                    <img
-                      src={IMAGENS_PAGINA.detalheCurso.src}
-                      alt={IMAGENS_PAGINA.detalheCurso.alt}
-                      width={800}
-                      height={600}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <figcaption className="border-t border-zinc-800 px-5 py-3.5 text-xs sm:text-sm text-zinc-400">
-                    {IMAGENS_PAGINA.detalheCurso.legenda}
-                  </figcaption>
-                </figure>
-              </div>
-
-              <div className="lg:col-span-6 order-1 lg:order-2">
-                <span className="text-xs font-semibold uppercase tracking-widest text-gold-400">
-                  Apresentação do Curso
-                </span>
-                <h2
-                  id="apresentacao-heading"
-                  className="mt-2 font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-50"
-                >
-                  O que é a técnica Gel na Tips e como o curso funciona
-                </h2>
-
-                <div className="mt-5 space-y-4 text-base leading-relaxed text-zinc-300">
-                  <p>
-                    O alongamento <strong className="text-zinc-100">Gel na Tips</strong> utiliza tips como base de extensão combinadas à construção estrutural em gel. Para entregar um resultado resistente, simétrico e com aspecto natural, cada etapa precisa ser executada com critério técnico.
-                  </p>
-                  <p>
-                    No curso online <strong className="text-zinc-100">Master Nails: Gel na Tips</strong>, a instrutora{' '}
-                    <strong className="text-zinc-100">{INSTRUTORA_CONFIG.nome}</strong> conduz o processo passo a passo: desde a preparação correta da lâmina natural e escolha da tip até o controle do gel, curvatura, sequência de lixamento técnico, acabamento próximo à cutícula e procedimentos seguros de manutenção e remoção.
-                  </p>
-                  <p>
-                    Por ser um curso em formato online, você pode assistir às aulas e rever os detalhes técnicos de aplicação de acordo com a sua disponibilidade de horários.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3. O QUE VOCÊ VAI APRENDER */}
-        <section
-          id="o-que-vai-aprender"
-          aria-labelledby="aprendizado-heading"
-          className="border-b border-zinc-900 py-16 sm:py-24"
-        >
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <span className="text-xs font-semibold uppercase tracking-widest text-gold-400">
-                Conteúdo Técnico
-              </span>
-              <h2
-                id="aprendizado-heading"
-                className="mt-2 font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-50"
-              >
-                O que você vai aprender
-              </h2>
-              <p className="mt-3 text-base text-zinc-300">
-                Etapas práticas abordadas no curso para executar o alongamento Gel na Tips com estrutura correta e acabamento limpo:
-              </p>
-            </div>
-
-            <ol className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {TOPICOS_APRENDIZADO.map((topico) => (
-                <li
-                  key={topico.id}
-                  className="flex flex-col justify-between rounded-xl border border-zinc-800/90 bg-obsidian-900 p-6 transition-colors hover:border-gold-400/40"
-                >
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-gold-400/30 bg-obsidian-850">
-                        {TOPIC_ICONS[topico.id]}
-                      </span>
-                      <span className="font-serif text-sm font-semibold tracking-widest text-gold-400/80">
-                        ETAPA {topico.numero}
-                      </span>
-                    </div>
-                    <h3 className="mt-5 font-serif text-xl font-semibold text-zinc-100">
-                      {topico.titulo}
-                    </h3>
-                    <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-zinc-300">
-                      {topico.descricao}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* 4. GALERIA DE TRABALHOS */}
-        <section
-          id="galeria"
-          aria-labelledby="galeria-heading"
-          className="border-b border-zinc-900 py-16 sm:py-24 bg-obsidian-900/40"
-        >
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <div className="max-w-2xl">
-                <span className="text-xs font-semibold uppercase tracking-widest text-gold-400">
-                  Acabamento e Estrutura
-                </span>
-                <h2
-                  id="galeria-heading"
-                  className="mt-2 font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-50"
-                >
-                  Galeria de trabalhos
-                </h2>
-                <p className="mt-3 text-base text-zinc-300">
-                  Observe de perto a simetria, o nivelamento de superfície e o acabamento na área da cutícula. Toque ou clique em qualquer imagem para ampliar.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {GALERIA_TRABALHOS.map((item, index) => (
-                <div
-                  key={item.id}
-                  className="group flex flex-col overflow-hidden rounded-xl border border-zinc-800/90 bg-obsidian-900 transition-colors hover:border-gold-400/50"
-                >
-                  <button
-                    type="button"
-                    onClick={() => handleOpenLightbox(index)}
-                    aria-label={`Ampliar imagem: ${item.titulo} — ${item.alt}`}
-                    className="relative aspect-[4/4] w-full overflow-hidden bg-obsidian-850 text-left focus-visible:outline-offset-[-4px]"
-                  >
-                    <img
-                      src={item.src}
-                      alt={item.alt}
-                      width={600}
-                      height={600}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                    />
-                    <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-md border border-zinc-700/80 bg-obsidian-950/85 px-2.5 py-1.5 text-xs font-medium text-zinc-200 backdrop-blur-sm group-hover:border-gold-400/60 group-hover:text-gold-300">
-                      <ZoomIn className="h-3.5 w-3.5 text-gold-400" aria-hidden="true" />
-                      <span>Ampliar</span>
-                    </span>
-                  </button>
-                  <div className="p-4 sm:p-5">
-                    <h3 className="font-serif text-lg font-semibold text-zinc-100">
-                      {item.titulo}
-                    </h3>
-                    <p className="mt-1 text-xs sm:text-sm text-zinc-400">
-                      {item.detalheTecnico}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 5. PARA QUEM É O CURSO */}
-        <section
-          id="para-quem-e"
-          aria-labelledby="publico-heading"
-          className="border-b border-zinc-900 py-16 sm:py-24"
-        >
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <span className="text-xs font-semibold uppercase tracking-widest text-gold-400">
-                Perfil das Alunas
-              </span>
-              <h2
-                id="publico-heading"
-                className="mt-2 font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-50"
-              >
-                Para quem é o curso
-              </h2>
-              <p className="mt-3 text-base text-zinc-300">
-                O treinamento foi organizado para atender diferentes momentos de aprendizado na área de unhas:
-              </p>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
-              {PERFIS_PUBLICO.map((perfil) => (
-                <div
-                  key={perfil.id}
-                  className="flex items-start gap-4 rounded-xl border border-zinc-800/90 bg-obsidian-900 p-6"
-                >
-                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gold-400/30 bg-obsidian-850 text-gold-400">
-                    <UserCheck className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <div>
-                    <h3 className="font-serif text-xl font-semibold text-zinc-100">
-                      {perfil.titulo}
-                    </h3>
-                    <p className="mt-2 text-sm sm:text-base leading-relaxed text-zinc-300">
-                      {perfil.descricao}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 6. O QUE ESTÁ INCLUÍDO */}
-        <section
-          id="o-que-esta-incluido"
-          aria-labelledby="incluido-heading"
-          className="border-b border-zinc-900 py-16 sm:py-24 bg-obsidian-900/40"
-        >
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <span className="text-xs font-semibold uppercase tracking-widest text-gold-400">
-                Estrutura de Estudo
-              </span>
-              <h2
-                id="incluido-heading"
-                className="mt-2 font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-50"
-              >
-                O que está incluído
-              </h2>
-              <p className="mt-3 text-base text-zinc-300">
-                Confira os recursos confirmados na sua inscrição no curso Master Nails: Gel na Tips:
-              </p>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-              {itensConfirmados.map((item) => (
-                <div
-                  key={item.id}
-                  className="rounded-xl border border-zinc-800 bg-obsidian-900 p-6"
-                >
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-gold-400/30 bg-obsidian-850 text-gold-400">
-                    {item.id === 'aulas' && <PlayCircle className="h-5 w-5" aria-hidden="true" />}
-                    {item.id === 'acesso-online' && <Sparkles className="h-5 w-5" aria-hidden="true" />}
-                    {item.id === 'certificado' && <Award className="h-5 w-5" aria-hidden="true" />}
-                    {item.id !== 'aulas' &&
-                      item.id !== 'acesso-online' &&
-                      item.id !== 'certificado' && (
-                        <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
-                      )}
-                  </div>
-                  <h3 className="mt-4 font-serif text-xl font-semibold text-zinc-100">
-                    {item.titulo}
-                  </h3>
-                  <p className="mt-2 text-sm sm:text-base leading-relaxed text-zinc-300">
-                    {item.descricao}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {itensPendentesConfirmacao.length > 0 && (
-              <p className="mt-6 text-xs sm:text-sm text-zinc-400">
-                * Informações adicionais sobre prazo de acesso, suporte para dúvidas, materiais complementares e atualizações podem ser consultadas nas condições vigentes exibidas na página de inscrição.
-              </p>
-            )}
-          </div>
-        </section>
-
-        {/* 7. APRESENTAÇÃO DA INSTRUTORA */}
-        <section
-          id="instrutora"
-          aria-labelledby="instrutora-heading"
-          className="border-b border-zinc-900 py-16 sm:py-24"
-        >
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-              <div className="lg:col-span-5">
-                <figure className="mx-auto max-w-sm lg:max-w-none overflow-hidden rounded-2xl border border-zinc-800 bg-obsidian-900">
-                  <div className="aspect-[4/5] w-full overflow-hidden bg-obsidian-850">
-                    <img
-                      src={INSTRUTORA_CONFIG.fotoUrl}
-                      alt={INSTRUTORA_CONFIG.fotoAlt}
-                      width={640}
-                      height={800}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                </figure>
-              </div>
-
-              <div className="lg:col-span-7">
-                <span className="text-xs font-semibold uppercase tracking-widest text-gold-400">
-                  Quem Ministra o Curso
-                </span>
-                <h2
-                  id="instrutora-heading"
-                  className="mt-2 font-serif text-3xl sm:text-4xl font-semibold text-zinc-50"
-                >
-                  {INSTRUTORA_CONFIG.nome}
-                </h2>
-                <p className="mt-1 text-base font-medium text-gold-300">
-                  {INSTRUTORA_CONFIG.atuacao}
-                </p>
-
-                <div className="mt-3 inline-flex items-center gap-2 text-sm text-zinc-400">
-                  <MapPin className="h-4 w-4 text-gold-400 shrink-0" aria-hidden="true" />
-                  <span>Atuação em {INSTRUTORA_CONFIG.localizacao}</span>
-                </div>
-
-                <div className="mt-6 space-y-4 text-base leading-relaxed text-zinc-300">
-                  <p>{INSTRUTORA_CONFIG.resumoConfirmado}</p>
-                  {INSTRUTORA_CONFIG.notaComplementarOpcional && (
-                    <p>{INSTRUTORA_CONFIG.notaComplementarOpcional}</p>
-                  )}
-                </div>
-
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-zinc-800/90 pt-6">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-zinc-400">Especialidade no curso</p>
-                    <p className="mt-1 text-sm sm:text-base font-medium text-zinc-100">
-                      Técnica Gel na Tips — Estrutura e Acabamento
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-zinc-400">Localização</p>
-                    <p className="mt-1 text-sm sm:text-base font-medium text-zinc-100">
-                      {INSTRUTORA_CONFIG.localizacao}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 8. INVESTIMENTO */}
-        <section
-          id="investimento"
-          aria-labelledby="investimento-heading"
-          className="border-b border-zinc-900 py-16 sm:py-24 bg-obsidian-900/50"
-        >
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <div className="overflow-hidden rounded-2xl border border-gold-400/35 bg-obsidian-900 p-6 sm:p-10 lg:p-12 shadow-2xl">
-              <div className="text-center max-w-2xl mx-auto">
-                <span className="text-xs font-semibold uppercase tracking-widest text-gold-400">
-                  Inscrição Online
-                </span>
-                <h2
-                  id="investimento-heading"
-                  className="mt-2 font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-50"
-                >
-                  Master Nails: Gel na Tips
-                </h2>
-                <p className="mt-3 text-base text-zinc-300">
-                  Aprenda todas as etapas técnicas do alongamento Gel na Tips com aulas passo a passo ministradas por {INSTRUTORA_CONFIG.nome}.
-                </p>
-              </div>
-
-              <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center border-t border-zinc-800/90 pt-8">
-                {/* Resumo do que está confirmado */}
-                <div className="lg:col-span-7 space-y-3.5">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-300">
-                    Resumo da sua inscrição:
-                  </h3>
-                  <ul className="space-y-3 text-sm sm:text-base text-zinc-200">
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="h-5 w-5 text-gold-400 shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>6 etapas técnicas: da preparação da unha natural à manutenção e remoção</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="h-5 w-5 text-gold-400 shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>Aulas passo a passo em ambiente online</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="h-5 w-5 text-gold-400 shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>Certificado de conclusão incluso</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Bloco de Valor Configurável */}
-                <div className="lg:col-span-5 flex flex-col items-center justify-center rounded-xl border border-zinc-800 bg-obsidian-950 p-6 text-center">
-                  {INVESTIMENTO_CONFIG.mostrarPrecoAnterior && (
-                    <p className="text-sm text-zinc-400 line-through">
-                      De {INVESTIMENTO_CONFIG.valorAnterior}
-                    </p>
-                  )}
-
-                  <p className="text-xs uppercase tracking-widest text-zinc-400">
-                    Investimento
-                  </p>
-
-                  {INVESTIMENTO_CONFIG.precoConfirmado ? (
-                    <div className="mt-2 flex items-baseline justify-center gap-1">
-                      <span className="text-lg font-medium text-gold-400">
-                        {INVESTIMENTO_CONFIG.moeda}
-                      </span>
-                      <span className="font-serif text-4xl sm:text-5xl font-bold text-zinc-50">
-                        {INVESTIMENTO_CONFIG.valorPrincipal}
-                      </span>
-                    </div>
-                  ) : (
-                    <p className="mt-2 font-serif text-2xl font-semibold text-zinc-100">
-                      Consulte na página de pagamento
-                    </p>
-                  )}
-
-                  {INVESTIMENTO_CONFIG.mostrarParcelamento && (
-                    <p className="mt-1.5 text-xs sm:text-sm text-gold-300">
-                      {INVESTIMENTO_CONFIG.textoParcelamento}
-                    </p>
-                  )}
-
-                  <p className="mt-3 text-xs leading-relaxed text-zinc-400">
-                    {INVESTIMENTO_CONFIG.observacaoValor}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-col items-center border-t border-zinc-800/90 pt-8">
-                <CheckoutButton
-                  label="Quero minha vaga"
-                  subtext="Acesse as informações e condições de pagamento"
-                  size="lg"
-                  className="items-center"
-                  onUnconfiguredClick={handleUnconfiguredCheckout}
-                />
-
-                <div className="mt-4 inline-flex items-center gap-2 text-xs text-zinc-400">
-                  <Lock className="h-3.5 w-3.5 text-gold-400" aria-hidden="true" />
-                  <span>Inscrição processada na página segura de checkout</span>
-                </div>
-
-                {checkoutNoticeVisible && !checkoutConfigured && (
-                  <div
-                    role="status"
-                    className="mt-5 flex items-start gap-2.5 rounded-lg border border-gold-400/40 bg-gold-400/10 px-4 py-3 text-xs sm:text-sm text-zinc-200 max-w-xl"
-                  >
-                    <Info className="h-4 w-4 text-gold-400 shrink-0 mt-0.5" aria-hidden="true" />
-                    <span>
-                      Para ativar o redirecionamento ao pagamento, substitua a constante{' '}
-                      <code className="rounded bg-obsidian-950 px-1.5 py-0.5 text-gold-300">
-                        LINK_CHECKOUT
-                      </code>{' '}
-                      em <code className="text-gold-300">src/config/courseConfig.ts</code> pela URL oficial de checkout.
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 9. DÚVIDAS FREQUENTES */}
-        <section
-          id="duvidas"
-          aria-labelledby="faq-heading"
-          className="border-b border-zinc-900 py-16 sm:py-24"
-        >
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <span className="text-xs font-semibold uppercase tracking-widest text-gold-400">
-                Perguntas e Respostas
-              </span>
-              <h2
-                id="faq-heading"
-                className="mt-2 font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-50"
-              >
-                Dúvidas frequentes
-              </h2>
-              <p className="mt-3 text-base text-zinc-300">
-                Informações essenciais para avaliar o curso com clareza antes da sua inscrição.
-              </p>
-            </div>
-
-            <FaqAccordion items={FAQ_ITEMS} />
-          </div>
-        </section>
-
-        {/* 10. CTA FINAL */}
-        <section
-          aria-labelledby="cta-final-heading"
-          className="py-16 sm:py-24 bg-obsidian-900/60"
-        >
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2
-              id="cta-final-heading"
-              className="font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold text-zinc-50"
-            >
-              Domine o passo a passo da técnica Gel na Tips no seu ritmo
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-zinc-300">
-              Aprenda a preparação correta da lâmina, aplicação das tips, curvatura, lixamento técnico, acabamento e manutenção com orientação clara de {INSTRUTORA_CONFIG.nome}.
-            </p>
-            <div className="mt-8 flex justify-center">
-              <CheckoutButton
-                label="Quero minha vaga"
-                subtext="Acesse as informações e condições de pagamento"
-                size="lg"
-                className="items-center"
-                onUnconfiguredClick={handleUnconfiguredCheckout}
-              />
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* RODAPÉ */}
-      <footer className="border-t border-zinc-800/90 bg-obsidian-950 py-12 text-sm text-zinc-400">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div>
-              <p className="font-serif text-lg font-semibold text-zinc-100">
-                Master Nails: Gel na Tips
-              </p>
-              <p className="mt-1 text-xs sm:text-sm text-zinc-400">
-                {INSTRUTORA_CONFIG.nome} — {INSTRUTORA_CONFIG.atuacao} ({INSTRUTORA_CONFIG.localizacao})
-              </p>
-            </div>
-
-            {/* Links de Instagram e WhatsApp: exibidos somente quando fornecidos */}
-            {(instagramConfigured || whatsappConfigured) && (
-              <div className="flex flex-wrap items-center gap-4">
-                {instagramConfigured && (
-                  <a
-                    href={LINK_INSTAGRAM}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-obsidian-900 px-4 py-2 text-zinc-200 hover:border-gold-400/50 hover:text-gold-300 transition-colors"
-                  >
-                    <Instagram className="h-4 w-4 text-gold-400" aria-hidden="true" />
-                    <span>Instagram</span>
-                  </a>
-                )}
-                {whatsappConfigured && (
-                  <a
-                    href={LINK_WHATSAPP}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-obsidian-900 px-4 py-2 text-zinc-200 hover:border-gold-400/50 hover:text-gold-300 transition-colors"
-                  >
-                    <MessageCircle className="h-4 w-4 text-gold-400" aria-hidden="true" />
-                    <span>WhatsApp</span>
-                  </a>
-                )}
-              </div>
-            )}
-          </div>
-
-          {(RODAPE_CONFIG.emailContato ||
-            RODAPE_CONFIG.urlPoliticaPrivacidade ||
-            RODAPE_CONFIG.urlTermosUso) && (
-            <div className="mt-6 flex flex-wrap items-center gap-6 border-t border-zinc-900 pt-6 text-xs text-zinc-400">
-              {RODAPE_CONFIG.emailContato && (
-                <span>Contato: {RODAPE_CONFIG.emailContato}</span>
-              )}
-              {RODAPE_CONFIG.urlPoliticaPrivacidade && (
-                <a
-                  href={RODAPE_CONFIG.urlPoliticaPrivacidade}
-                  className="hover:text-gold-300 underline underline-offset-4"
-                >
-                  Política de Privacidade
-                </a>
-              )}
-              {RODAPE_CONFIG.urlTermosUso && (
-                <a
-                  href={RODAPE_CONFIG.urlTermosUso}
-                  className="hover:text-gold-300 underline underline-offset-4"
-                >
-                  Termos de Uso
-                </a>
-              )}
-            </div>
-          )}
-
-          <div className="mt-8 border-t border-zinc-900 pt-6 text-xs text-zinc-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <p>
-              © {new Date().getFullYear()} Master Nails: Gel na Tips — {INSTRUTORA_CONFIG.nome}. Todos os direitos reservados.
-            </p>
-            <p>Curso livre de capacitação e aperfeiçoamento técnico online.</p>
-          </div>
-        </div>
-      </footer>
-
-      {/* Lightbox Modal da Galeria */}
-      <GalleryLightbox
-        items={GALERIA_TRABALHOS}
-        currentIndex={lightboxIndex}
-        onClose={handleCloseLightbox}
-        onPrev={handlePrevLightbox}
-        onNext={handleNextLightbox}
-      />
-    </div>
-  );
+function Reveal({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const reduce = useReducedMotion();
+  return <motion.div className={className} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.18 }} transition={{ duration: reduce ? 0 : .68, delay, ease: [0.22, 1, .36, 1] }}>{children}</motion.div>;
 }
+const Crop = ({ className, label }: { className: string; label: string }) => <div className={'photo-crop ' + className} role="img" aria-label={label} />;
 
-export default App;
+export default function App() {
+  const reduce = useReducedMotion();
+  const [active, setActive] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [notice, setNotice] = useState(false);
+  const ready = isLinkConfigured(LINK_CHECKOUT);
+  const insta = isLinkConfigured(LINK_INSTAGRAM);
+  const wa = isLinkConfigured(LINK_WHATSAPP);
+  const included = ITENS_INCLUIDOS_CONFIG.filter((item) => item.confirmado);
+  const onCheckoutUnavailable = () => {
+    setNotice(true);
+    document.getElementById('investimento')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  };
+  const closeMenu = () => setMenuOpen(false);
+  const heroInitial = reduce ? false : { opacity: 0, y: 22 };
+  const heroTransition = { duration: reduce ? 0 : .82, ease: [0.22, 1, .36, 1] as [number, number, number, number] };
+
+  return <div className="mn-page">
+    <a className="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+    <header className="mn-header">
+      <div className="mn-header-inner">
+        <a href="#" className="mn-brand" onClick={closeMenu} aria-label="Master Nails — início"><span className="brand-mark">M<span>N</span></span><span className="brand-copy"><strong>MASTER NAILS</strong><small>GEL NA TIPS · KAMILA MARTINS</small></span></a>
+        <button className="mobile-menu-button" type="button" aria-expanded={menuOpen} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={20}/> : <Menu size={20}/>}</button>
+        <nav className={'mn-nav ' + (menuOpen ? 'is-open' : '')} aria-label="Navegação principal">
+          <a href="#curso" onClick={closeMenu}>O curso</a><a href="#conteudo" onClick={closeMenu}>Conteúdo</a><a href="#trabalhos" onClick={closeMenu}>Trabalhos</a><a href="#instrutora" onClick={closeMenu}>Instrutora</a><a href="#duvidas" onClick={closeMenu}>Dúvidas</a>
+        </nav>
+        <CheckoutButton label="Quero minha vaga" subtext="" size="md" fullWidthMobile={false} className="header-cta" onUnconfiguredClick={onCheckoutUnavailable}/>
+      </div>
+    </header>
+
+    <main id="conteudo-principal">
+      <section className="mn-hero" aria-labelledby="hero-title">
+        <div className="hero-glow" aria-hidden="true"/>
+        <div className="hero-inner">
+          <motion.div className="hero-copy" initial={heroInitial} animate={{ opacity: 1, y: 0 }} transition={heroTransition}>
+            <div className="eyebrow eyebrow-light"><span className="eyebrow-line"/>FORMAÇÃO ONLINE · GEL NA TIPS</div>
+            <h1 id="hero-title">Técnica que transforma <em>cada detalhe.</em></h1>
+            <p className="hero-lede">Aprenda Gel na Tips com um passo a passo claro, do preparo ao acabamento, guiada por quem vive a profissão todos os dias.</p>
+            <div className="hero-actions">
+              <CheckoutButton label="Conhecer o curso" subtext="Confira as condições de inscrição" size="lg" className="hero-buy" onUnconfiguredClick={onCheckoutUnavailable}/>
+              <a className="hero-secondary" href="#trabalhos"><span className="play-ring"><CirclePlay size={20}/></span>Veja os trabalhos</a>
+            </div>
+            <div className="hero-proof"><div className="avatar-stack" aria-hidden="true"><span>K</span><span>✳</span><span>MN</span></div><p><strong>Uma técnica, seis etapas essenciais</strong><br/>para aprender no seu ritmo</p></div>
+          </motion.div>
+          <motion.div className="hero-art" initial={reduce ? false : { opacity: 0, scale: .96, x: 20 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: reduce ? 0 : .9, delay: .12, ease: [0.22, 1, .36, 1] }}>
+            <div className="hero-photo-frame"><Crop className="hero-photo" label="Kamila trabalhando em uma aplicação de unhas"/><div className="hero-photo-shade"/><div className="photo-caption"><span>01 — 06</span><span>A beleza está na técnica</span></div></div>
+            <motion.div className="hero-seal" animate={reduce ? undefined : { rotate: [0, 4, 0], y: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}><Sparkles size={17}/><span>ESTRUTURA<br/>& ACABAMENTO</span></motion.div>
+            <div className="hero-index">GEL<br/>NA TIPS</div>
+          </motion.div>
+        </div>
+        <a className="scroll-cue" href="#curso"><span>ROLE PARA DESCOBRIR</span><ArrowDown size={15}/></a>
+      </section>
+
+      <div className="mn-ribbon" aria-hidden="true"><div className="ribbon-track">{[0,1].map((i)=><span className="ribbon-group" key={i}><span>PREPARAÇÃO</span><i>✳</i><span>ESTRUTURA</span><i>✳</i><span>ACABAMENTO</span><i>✳</i><span>GEL NA TIPS</span><i>✳</i></span>)}</div></div>
+
+      <section className="mn-intro mn-section" id="curso">
+        <Reveal className="section-kicker"><span>01</span><i/> SOBRE O CURSO</Reveal>
+        <Reveal className="intro-grid"><div className="intro-heading"><p className="overline">MAIS TÉCNICA. MAIS CONFIANÇA.</p><h2>Aprenda uma técnica<br/><em>em cada etapa.</em></h2></div><div className="intro-copy"><p>O Master Nails: Gel na Tips apresenta o processo de alongamento em gel de forma organizada e prática. Acompanhe as etapas fundamentais e entenda como cada detalhe contribui para um resultado bem estruturado.</p><a href="#conteudo" className="text-link">Explore o conteúdo <ArrowRight size={16}/></a></div></Reveal>
+        <div className="intro-bottom"><Reveal className="intro-image-wrap"><Crop className="detail-photo" label="Detalhe de uma aplicação de gel na tips"/><span className="image-note">DETALHE DA APLICAÇÃO <i>✳</i> KAMILA MARTINS</span></Reveal><div className="intro-facts">{[['01','Aprenda no seu ritmo','Curso online para estudar nos horários que funcionam para você.'],['02','Veja cada etapa de perto','Aulas passo a passo sobre a técnica Gel na Tips.'],['03','Conclua com certificado','Certificado de conclusão incluído no curso.']].map(([n,t,d],i)=><Reveal className="fact-item" key={n} delay={i*.07}><span className="fact-no">{n}</span><div><strong>{t}</strong><p>{d}</p></div></Reveal>)}</div></div>
+      </section>
+
+      <section className="mn-curriculum mn-section" id="conteudo" aria-labelledby="curriculum-title">
+        <Reveal className="curriculum-head"><div><div className="section-kicker section-kicker-light"><span>02</span><i/> CONTEÚDO PROGRAMÁTICO</div><h2 id="curriculum-title">Uma base técnica,<br/><em>do começo ao fim.</em></h2></div><p>Seis momentos importantes do processo, apresentados em sequência para facilitar o aprendizado e a prática.</p></Reveal>
+        <div className="curriculum-list">{TOPICOS_APRENDIZADO.map((topic,i)=><Reveal className="curriculum-row" key={topic.id} delay={i*.04}><span className="curriculum-number">0{i+1}</span><h3>{topic.titulo}</h3><p>{topic.descricao}</p><span className="row-spark">✳</span></Reveal>)}</div>
+        <div className="curriculum-footer"><span>DO PREPARO AO ACABAMENTO</span><span>MASTER NAILS · {INSTRUTORA_CONFIG.nome.toUpperCase()}</span></div>
+      </section>
+
+      <section className="mn-portfolio mn-section" id="trabalhos" aria-labelledby="portfolio-title">
+        <Reveal className="portfolio-heading"><div><div className="section-kicker"><span>03</span><i/> PORTFÓLIO</div><h2 id="portfolio-title">Olhe de perto.<br/><em>Repare nos detalhes.</em></h2></div><p>Trabalhos de Gel na Tips para observar formatos, cores e possibilidades de acabamento.</p></Reveal>
+        <div className="portfolio-grid">{GALERIA_TRABALHOS.map((item,i)=><motion.button type="button" key={item.id} className={'portfolio-card portfolio-card-'+(i+1)} onClick={()=>setActive(i)} aria-label={'Ampliar: '+item.titulo} whileHover={reduce ? undefined : { y:-7 }} transition={{duration:.25}}><Crop className={'portfolio-image portfolio-crop-'+(i+1)} label={item.alt}/><span className="portfolio-overlay"><span>0{i+1}</span><span>{item.titulo}</span><ArrowRight size={17}/></span><span className="portfolio-open" aria-hidden="true">+</span></motion.button>)}</div>
+        <p className="portfolio-caption">TRABALHOS DA INSTRUTORA <span>·</span> GEL NA TIPS</p>
+      </section>
+
+      <section className="mn-audience mn-section"><Reveal className="audience-side"><div className="section-kicker"><span>04</span><i/> PARA QUEM É</div><h2>Seu próximo passo<br/><em>começa aqui.</em></h2><p>O curso foi pensado para diferentes momentos da jornada na área de unhas.</p></Reveal><div className="audience-list">{PERFIS_PUBLICO.map((p,i)=><Reveal className="audience-item" key={p.id} delay={i*.05}><span className="audience-index">0{i+1}</span><div><h3>{p.titulo}</h3><p>{p.descricao}</p></div><CheckCircle2 size={17}/></Reveal>)}</div></section>
+
+      <section className="mn-instructor mn-section" id="instrutora" aria-labelledby="instructor-title"><div className="instructor-orbit" aria-hidden="true"/><div className="instructor-inner"><Reveal className="instructor-visual"><Crop className="instructor-photo" label="Kamila Martins, nail designer e instrutora"/><div className="instructor-stamp"><span>KM</span><i>✳</i><small>NAIL DESIGNER<br/>& INSTRUTORA</small></div></Reveal><Reveal className="instructor-copy" delay={.1}><div className="section-kicker section-kicker-light"><span>05</span><i/> QUEM ENSINA</div><p className="overline">TÉCNICA COM EXPERIÊNCIA NO DIA A DIA</p><h2 id="instructor-title">{INSTRUTORA_CONFIG.nome}<em> — uma paixão por cada detalhe.</em></h2><p className="instructor-bio">{INSTRUTORA_CONFIG.resumoConfirmado}</p><div className="instructor-location"><MapPin size={16}/><span>{INSTRUTORA_CONFIG.localizacao}</span></div><a className="instructor-link" href="#investimento">Conheça o curso <ArrowRight size={16}/></a></Reveal></div></section>
+
+      <section className="mn-offer mn-section" id="investimento" aria-labelledby="offer-title"><Reveal className="offer-card"><div className="offer-left"><div className="section-kicker section-kicker-light"><span>06</span><i/> SUA INSCRIÇÃO</div><p className="overline">MASTER NAILS · GEL NA TIPS</p><h2 id="offer-title">Pronta para começar<br/><em>uma nova técnica?</em></h2><ul className="offer-checklist">{included.map((item)=><li key={item.id}><CheckCircle2 size={17}/><span>{item.titulo}</span></li>)}</ul></div><div className="offer-right"><div className="offer-price-label">INVESTIMENTO</div>{INVESTIMENTO_CONFIG.precoConfirmado?<p className="offer-price"><small>{INVESTIMENTO_CONFIG.moeda}</small>{INVESTIMENTO_CONFIG.valorPrincipal}</p>:<p className="offer-price offer-price-consult">Confira no checkout</p>}{INVESTIMENTO_CONFIG.mostrarParcelamento&&<p className="offer-installments">{INVESTIMENTO_CONFIG.textoParcelamento}</p>}<p className="offer-terms">Consulte formas de pagamento e condições vigentes na página oficial de inscrição.</p><CheckoutButton label="Quero minha vaga" subtext="" size="lg" className="offer-button" onUnconfiguredClick={onCheckoutUnavailable}/><p className="secure-note"><LockKeyhole size={13}/> Pagamento processado em ambiente seguro</p>{notice&&!ready&&<div className="checkout-notice" role="status">O endereço oficial de inscrição ainda precisa ser configurado.</div>}</div></Reveal><p className="offer-footnote">Conteúdo e condições conforme informações da página oficial de inscrição.</p></section>
+
+      <section className="mn-faq mn-section" id="duvidas"><Reveal className="faq-intro"><div className="section-kicker"><span>07</span><i/> DÚVIDAS</div><h2>Quer saber<br/><em>mais alguma coisa?</em></h2><p>Confira as respostas antes de fazer sua inscrição.</p><a href="#investimento" className="text-link">Voltar à inscrição <ArrowRight size={16}/></a></Reveal><Reveal className="faq-content"><FaqAccordion items={FAQ_ITEMS}/></Reveal></section>
+
+      <section className="mn-last-call"><div className="last-call-ornament" aria-hidden="true">✳</div><div className="section-kicker section-kicker-light"><i/> MASTER NAILS · GEL NA TIPS</div><h2>O próximo detalhe<br/>é <em>seu.</em></h2><p>Conheça o curso online de Gel na Tips com Kamila Martins.</p><CheckoutButton label="Quero minha vaga" subtext="Confira as condições de inscrição" size="lg" className="last-call-button" onUnconfiguredClick={onCheckoutUnavailable}/></section>
+    </main>
+
+    <footer className="mn-footer"><a href="#" className="mn-brand footer-brand" aria-label="Master Nails — início"><span className="brand-mark">M<span>N</span></span><span className="brand-copy"><strong>MASTER NAILS</strong><small>GEL NA TIPS · KAMILA MARTINS</small></span></a><p>Curso livre online de capacitação e aperfeiçoamento técnico.</p><div className="footer-socials">{insta&&<a href={LINK_INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={17}/></a>}{wa&&<a href={LINK_WHATSAPP} target="_blank" rel="noreferrer" aria-label="WhatsApp"><span>W</span></a>}</div><span className="footer-copy">© 2026 Master Nails · Kamila Martins</span></footer>
+    <div className="mobile-purchase-bar"><div><span>Curso online</span><strong>{INVESTIMENTO_CONFIG.precoConfirmado?'R$ '+INVESTIMENTO_CONFIG.valorPrincipal:'Consulte'}</strong></div><CheckoutButton label="Inscrever-se" subtext="" size="md" fullWidthMobile={false} onUnconfiguredClick={onCheckoutUnavailable}/></div>
+    <GalleryLightbox items={GALERIA_TRABALHOS} currentIndex={active} onClose={()=>setActive(null)} onPrev={()=>setActive((v)=>v===null?null:(v-1+GALERIA_TRABALHOS.length)%GALERIA_TRABALHOS.length)} onNext={()=>setActive((v)=>v===null?null:(v+1)%GALERIA_TRABALHOS.length)}/>
+  </div>;
+}
