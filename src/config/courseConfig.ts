@@ -242,56 +242,15 @@ export const IMAGENS_PAGINA = {
   },
 };
 
-// Substitua as fotos atuais por arquivos de melhor iluminação e nitidez quando disponíveis; preserve os nomes e dimensões declaradas.
+// Imagens ilustrativas temporárias geradas para apresentar possibilidades de acabamento.
+// Substitua por fotos reais e autorizadas da Kamila ou de alunas antes de tratá-las como portfólio.
 export const GALERIA_TRABALHOS: ItemGaleria[] = [
-  {
-    id: 'trabalho-1',
-    src: '/images/nail-01.webp',
-    alt: 'Unhas em tons nude e marrom com acabamento perolado',
-    titulo: 'Nude perolado',
-    detalheTecnico: 'Tons naturais com brilho delicado',
-    width: 360, height: 190,
-  },
-  {
-    id: 'trabalho-2',
-    src: '/images/nail-02.webp',
-    alt: 'Unhas vermelhas com detalhe floral branco',
-    titulo: 'Vermelho com detalhe floral',
-    detalheTecnico: 'Cor intensa com nail art delicada',
-    width: 360, height: 190,
-  },
-  {
-    id: 'trabalho-3',
-    src: '/images/nail-03.webp',
-    alt: 'Unhas em tons azuis com desenho floral e pedrarias',
-    titulo: 'Azul floral',
-    detalheTecnico: 'Composição floral com detalhes em brilho',
-    width: 360, height: 190,
-  },
-  {
-    id: 'trabalho-4',
-    src: '/images/nail-04.webp',
-    alt: 'Detalhe de unha alongada em tom rosa translúcido',
-    titulo: 'Rosa translúcido',
-    detalheTecnico: 'Acabamento delicado em close',
-    width: 300, height: 280,
-  },
-  {
-    id: 'trabalho-5',
-    src: '/images/nail-05.webp',
-    alt: 'Unhas em tons rosados com francesinha branca e desenho floral',
-    titulo: 'Francesinha floral',
-    detalheTecnico: 'Francesinha com decoração artesanal',
-    width: 300, height: 250,
-  },
-  {
-    id: 'trabalho-6',
-    src: '/images/nail-06.webp',
-    alt: 'Unhas em tom nude rosado com pontas brancas',
-    titulo: 'Francesinha clássica',
-    detalheTecnico: 'Base rosada com pontas brancas',
-    width: 300, height: 230,
-  },
+  { id: 'trabalho-1', src: '/images/nail-editorial-01.webp', alt: 'Imagem ilustrativa de alongamento Gel na Tips nude rosado, em formato amendoado', titulo: 'Nude rosado', detalheTecnico: 'Imagem ilustrativa · acabamento nude com brilho', width: 840, height: 1050 },
+  { id: 'trabalho-2', src: '/images/nail-editorial-02.webp', alt: 'Imagem ilustrativa de unhas nude rosadas com delicados traços dourados', titulo: 'Detalhe dourado', detalheTecnico: 'Imagem ilustrativa · linhas finas sobre base nude', width: 840, height: 1050 },
+  { id: 'trabalho-3', src: '/images/nail-editorial-03.webp', alt: 'Imagem ilustrativa de alongamento com base rosa clara e francesinha branca', titulo: 'Francesinha suave', detalheTecnico: 'Imagem ilustrativa · ponta branca e base rosada', width: 840, height: 1050 },
+  { id: 'trabalho-4', src: '/images/nail-editorial-04.webp', alt: 'Imagem ilustrativa de unhas alongadas em rosa perolado com brilho delicado', titulo: 'Rosa perolado', detalheTecnico: 'Imagem ilustrativa · brilho perolado e formato amendoado', width: 840, height: 1050 },
+  { id: 'trabalho-5', src: '/images/nail-editorial-05.webp', alt: 'Imagem ilustrativa de unhas alongadas em rosa translúcido e acabamento glossy', titulo: 'Rosé translúcido', detalheTecnico: 'Imagem ilustrativa · transparência rosada e brilho uniforme', width: 840, height: 1050 },
+  { id: 'trabalho-6', src: '/images/nail-editorial-06.webp', alt: 'Imagem ilustrativa de unhas em tom mocha com detalhe de brilho champagne', titulo: 'Mocha com brilho', detalheTecnico: 'Imagem ilustrativa · tons mocha com ponto de luz', width: 840, height: 1050 },
 ];
 
 // 9. DÚVIDAS FREQUENTES (FAQ — Respostas configuráveis sem inventar dados não confirmados)

@@ -115,9 +115,9 @@ export default function App() {
 
       <section className="mn-portfolio mn-section" id="trabalhos" aria-labelledby="portfolio-title" data-analytics-section="trabalhos">
         <Reveal className="portfolio-heading"><div><div className="section-kicker"><span>03</span><i/> TRABALHOS</div><h2 id="portfolio-title">Resultados que você<br/><em>vai aprender a fazer.</em></h2></div><p>Veja detalhes de formatos, cores e acabamentos relacionados à técnica Gel na Tips.</p></Reveal>
-        {/* Troque estas imagens por fotos originais em luz natural, foco nítido e sem filtros para valorizar o trabalho real. */}
+        {/* Imagens geradas são provisórias; substitua por fotos reais, nítidas e autorizadas antes de afirmar autoria. */}
         <div className="portfolio-grid">{GALERIA_TRABALHOS.map((item, i) => <motion.button type="button" key={item.id} className={'portfolio-card portfolio-card-'+(i+1)} onClick={() => setActive(i)} aria-label={`Ampliar foto ${i+1}: ${item.titulo}`} whileHover={reduce ? undefined : { y: -3 }} transition={{ duration: .22 }}><img className="portfolio-image" src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async"/><span className="portfolio-meta"><small>0{i+1} · GEL NA TIPS</small><span>{item.titulo}</span></span></motion.button>)}</div>
-        <p className="portfolio-caption">[INSERIR: confirmar se os trabalhos são da Kamila ou de alunas]</p>
+        <p className="portfolio-caption">Imagens ilustrativas. Substitua por fotos reais e autorizadas dos trabalhos da Kamila ou de alunas.</p>
         <div className="portfolio-cta"><p>Quer aprender a técnica por trás desses resultados?</p><PrimaryCta className="intro-buy" subtext={`${price} · checkout Kiwify`}/></div>
       </section>
 
