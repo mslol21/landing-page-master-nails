@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * CONFIGURAÇÃO CENTRAL DA LANDING PAGE — MASTER NAILS: GEL NA TIPS
+ * CONFIGURAÇÃO CENTRAL DA LANDING PAGE — CHAVE DO SUCESSO MASTER NAILS: GEL NA TIPS
  * ============================================================================
  * Substitua as constantes e os campos abaixo conforme confirmação da instrutora
  * Kamila Martins. Nenhum dado não confirmado é exibido como fato na página.
@@ -31,9 +31,9 @@ export const INSTRUTORA_CONFIG = {
   localizacao: 'Itaquera, São Paulo — SP',
   fotoUrl: '/images/kamila-martins-instrutora.jpg',
   fotoAlt:
-    'Retrato de Kamila Martins, nail designer e instrutora do curso Master Nails: Gel na Tips',
+    'Retrato de Kamila Martins, nail designer e instrutora do curso Chave do Sucesso Master Nails: Gel na Tips',
   resumoConfirmado:
-    'Nail designer e instrutora com atuação em Itaquera, São Paulo. No curso Master Nails: Gel na Tips, conduz as aulas de forma prática e estruturada, demonstrando cada etapa do processo técnico — da preparação da lâmina natural ao acabamento e manutenção.',
+    'Nail designer e instrutora com atuação em Itaquera, São Paulo. No curso Chave do Sucesso Master Nails: Gel na Tips, conduz as aulas de forma prática e estruturada, demonstrando cada etapa do processo técnico — da preparação da lâmina natural ao acabamento e manutenção.',
   // Campo opcional caso deseje adicionar informações biográficas confirmadas futuramente:
   notaComplementarOpcional: '',
 };
@@ -41,8 +41,8 @@ export const INSTRUTORA_CONFIG = {
 // 3. BENEFÍCIOS CONFIRMADOS DO HERO (Máximo de 3 benefícios confirmados)
 export const HERO_BENEFICIOS_CONFIRMADOS = [
   'Aulas passo a passo',
-  'Certificado de conclusão',
-  'Acesso online',
+  'Certificado incluso',
+  'Acesso imediato e vitalício',
 ] as const;
 
 // 4. TÓPICOS DO CONTEÚDO PROGRAMÁTICO (Confirmados nas referências)
@@ -160,7 +160,7 @@ export const ITENS_INCLUIDOS_CONFIG: ItemIncluido[] = [
     id: 'certificado',
     titulo: 'Certificado de conclusão',
     descricao:
-      'Emissão de certificado após a conclusão das aulas do curso Master Nails: Gel na Tips.',
+      'Emissão de certificado após a conclusão das aulas do curso Chave do Sucesso Master Nails: Gel na Tips.',
     confirmado: true,
   },
   // Itens mencionados nas referências que dependem de confirmação das regras atuais da turma:
@@ -291,7 +291,7 @@ export const FAQ_ITEMS: ItemFaq[] = [
     id: 'curso-online',
     pergunta: 'O curso é online?',
     resposta:
-      'Sim. O curso Master Nails: Gel na Tips é 100% online, permitindo que você assista às aulas no seu próprio ritmo, de onde estiver.',
+      'Sim. O curso Chave do Sucesso Master Nails: Gel na Tips é 100% online, permitindo que você assista às aulas no seu próprio ritmo, de onde estiver.',
   },
   {
     id: 'assistir-celular',
