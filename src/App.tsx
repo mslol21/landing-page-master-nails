@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowDown, ArrowRight, Award, BadgeCheck, BookOpen, CheckCircle2, CirclePlay, Hand, Infinity as InfinityIcon, Layers, LockKeyhole, MapPin, Menu, MonitorPlay, RefreshCw, Ruler, ShieldCheck, Sparkles, X } from 'lucide-react';
-import { LINK_INSTAGRAM, isLinkConfigured, INSTRUTORA_CONFIG, TOPICOS_APRENDIZADO, PERFIS_PUBLICO, INVESTIMENTO_CONFIG, GARANTIA_CONFIG, GALERIA_TRABALHOS, FAQ_ITEMS } from './config/courseConfig';
+import { ArrowDown, ArrowRight, BookOpen, CheckCircle2, CirclePlay, Hand, Layers, LockKeyhole, Menu, RefreshCw, Ruler, Sparkles, X } from 'lucide-react';
+import { TOPICOS_APRENDIZADO, PERFIS_PUBLICO, INVESTIMENTO_CONFIG, GALERIA_TRABALHOS, FAQ_ITEMS } from './config/courseConfig';
 import { CheckoutButton } from './components/CheckoutButton';
 import { GalleryLightbox } from './components/GalleryLightbox';
 import { FaqAccordion } from './components/FaqAccordion';
@@ -19,28 +19,17 @@ function PrimaryCta({ className = '', subtext = '' }: { className?: string; subt
 const modules = TOPICOS_APRENDIZADO;
 const moduleIcons = [Hand, Layers, BookOpen, Ruler, Sparkles, RefreshCw];
 
-function CourseMockup() {
-  return <div className="course-hero-visual" aria-label="Prévia ilustrativa da área digital do curso Master Nails">
-    <div className="hero-visual-halo" aria-hidden="true" />
-    <figure className="hero-nail-shot">
-      <img src="/images/nail-editorial-04.webp" alt="Imagem ilustrativa de unhas alongadas em rosa perolado com acabamento brilhante" width="840" height="1050" loading="eager" decoding="async" />
-      <figcaption className="hero-nail-caption"><span>GEL NA TIPS · ACABAMENTO</span><strong>Do preparo à finalização</strong><small>Imagem ilustrativa</small></figcaption>
-    </figure>
-    <div className="hero-lesson-preview" aria-label="Prévia ilustrativa do curso online">
-      <div className="hero-preview-header"><span className="hero-preview-play"><CirclePlay size={22}/></span><span><small>AULA 01 · PASSO A PASSO</small><strong>Preparação da unha natural</strong></span></div>
-      <div className="hero-preview-progress"><i/></div>
-      <p>Curso online <span>·</span> acesso no seu ritmo</p>
-    </div>
-    <div className="hero-float hero-float-certificate"><BadgeCheck size={19}/><span>Certificado<br/><strong>incluso</strong></span></div>
-    <div className="hero-float hero-float-access"><InfinityIcon size={20}/><span>Acesso<br/><strong>vitalício</strong></span></div>
-  </div>;
+function HeroPhoto() {
+  return <figure className="hero-photo-composition">
+    <img src="/images/nail-05.webp" alt="Unhas rosadas com francesinha branca e detalhe floral" width="300" height="250" loading="eager" decoding="async" />
+    <figcaption><span>GEL NA TIPS</span><span>Uma técnica, etapa por etapa.</span></figcaption>
+  </figure>;
 }
 
 export default function App() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const hasInstagram = isLinkConfigured(LINK_INSTAGRAM);
   const price = `${INVESTIMENTO_CONFIG.moeda} ${INVESTIMENTO_CONFIG.valorPrincipal}`;
   const heroTransition = { duration: reduce ? 0 : .8, ease: [0.22, 1, .36, 1] as [number, number, number, number] };
 
@@ -73,7 +62,7 @@ export default function App() {
         </a>
         <button className="mobile-menu-button" type="button" aria-expanded={menuOpen} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={20}/> : <Menu size={20}/>}</button>
         <nav className={'mn-nav ' + (menuOpen ? 'is-open' : '')} aria-label="Navegação principal">
-          <a href="#aprenda" onClick={closeMenu}>O que você aprende</a><a href="#trabalhos" onClick={closeMenu}>Trabalhos</a><a href="#depoimentos" onClick={closeMenu}>Alunas</a><a href="#investimento" onClick={closeMenu}>Investimento</a><a href="#duvidas" onClick={closeMenu}>Dúvidas</a>
+          <a href="#aprenda" onClick={closeMenu}>O curso</a><a href="#conteudo" onClick={closeMenu}>Conteúdo</a><a href="#trabalhos" onClick={closeMenu}>Galeria</a><a href="#investimento" onClick={closeMenu}>Investimento</a><a href="#duvidas" onClick={closeMenu}>Dúvidas</a>
         </nav>
         <PrimaryCta className="header-cta" />
       </div>
@@ -89,28 +78,20 @@ export default function App() {
             <h1 id="hero-title">Aprenda Gel na Tips <em>do preparo ao acabamento</em></h1>
             <p className="hero-lede">Desenvolva <strong>autonomia e segurança técnica</strong> para criar alongamentos bem estruturados e ampliar os serviços que oferece.</p>
             <div className="hero-actions"><PrimaryCta className="hero-buy" subtext="Checkout seguro pela Kiwify"/><a className="hero-secondary" href="#conteudo"><span className="play-ring"><CirclePlay size={20}/></span>Conheça o curso</a></div>
-            {INVESTIMENTO_CONFIG.precoConfirmado && <div className="hero-price-badge"><span>INVESTIMENTO ÚNICO</span><strong>{price}</strong><small>acesso imediato e vitalício</small></div>}
+            {INVESTIMENTO_CONFIG.precoConfirmado && <div className="hero-price-badge"><span>INVESTIMENTO ÚNICO</span><strong>{price}</strong><small>Curso online · acesso vitalício</small></div>}
           </motion.div>
           <motion.div className="hero-art" initial={reduce ? false : { opacity: 0, scale: .97, x: 18 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: reduce ? 0 : .9, delay: .12, ease: [0.22, 1, .36, 1] }}>
-            <CourseMockup/>
+            <HeroPhoto/>
           </motion.div>
         </div>
         <a className="scroll-cue" href="#aprenda"><span>CONHEÇA O CURSO</span><ArrowDown size={15}/></a>
       </section>
 
-      <div className="hero-trust-strip" aria-label="Destaques do curso"><div><strong>[INSERIR: nº real]</strong><span>alunas</span></div><i/><div><strong>Certificado</strong><span>incluso</span></div><i/><div><strong>Acesso</strong><span>imediato e vitalício</span></div><i/><div><strong>★ [INSERIR: nota real]</strong><span>avaliação das alunas</span></div></div>
+      <div className="hero-trust-strip" aria-label="Informações do curso"><div><strong>100% online</strong><span>Estude no seu ritmo</span></div><i/><div><strong>Certificado</strong><span>Incluso no curso</span></div><i/><div><strong>Acesso vitalício</strong><span>Comece após a confirmação</span></div></div>
 
       <section className="mn-intro mn-section mn-conversion-intro" id="aprenda" aria-labelledby="learn-title" data-analytics-section="aprendizado">
         <Reveal className="section-kicker"><span>01</span><i/> O QUE VOCÊ APRENDE</Reveal>
         <Reveal className="intro-grid"><div className="intro-heading"><p className="overline">DO PRIMEIRO PASSO À FINALIZAÇÃO</p><h2 id="learn-title">Aprenda cada etapa.<br/><em>Pratique com confiança.</em></h2></div><div className="intro-copy"><p>Um passo a passo para aprender <strong>preparo, aplicação das tips, estrutura, lixamento, acabamento e manutenção</strong> — no seu ritmo, de onde estiver.</p><a href="#conteudo" className="text-link">Ver os módulos do curso <ArrowRight size={16}/></a></div></Reveal>
-        <div className="course-facts" aria-label="Destaques e ficha rápida do curso">
-          <div><BookOpen size={28}/><span>QUANTIDADE DE AULAS</span><strong>[INSERIR: nº de aulas]</strong></div>
-          <div><MonitorPlay size={28}/><span>CARGA HORÁRIA</span><strong>[INSERIR: carga horária]</strong></div>
-          <div><BadgeCheck size={28}/><span>CERTIFICADO</span><strong>Incluso</strong></div>
-          <div><InfinityIcon size={28}/><span>ACESSO</span><strong>Imediato e vitalício</strong></div>
-        </div>
-        <div className="course-benefit-strip" aria-label="Inclui aulas passo a passo, certificado e acesso imediato vitalício"><span><CirclePlay size={20}/> Aulas passo a passo</span><i/><span><Award size={20}/> Certificado incluso</span><i/><span><InfinityIcon size={20}/> Acesso imediato e vitalício</span></div>
-        <p className="course-materials-note"><strong>Materiais necessários:</strong> [INSERIR: lista de materiais necessários]</p>
         <div className="conversion-cta"><span>Aprenda Gel na Tips do preparo ao acabamento.</span><PrimaryCta className="intro-buy" subtext={INVESTIMENTO_CONFIG.precoConfirmado ? `${price} · pagamento pela Kiwify` : 'Confira o valor no checkout'} /></div>
       </section>
 
@@ -123,40 +104,31 @@ export default function App() {
 
       <section className="mn-portfolio mn-section" id="trabalhos" aria-labelledby="portfolio-title" data-analytics-section="trabalhos">
         <Reveal className="portfolio-heading"><div><div className="section-kicker"><span>03</span><i/> TRABALHOS</div><h2 id="portfolio-title">Resultados que você<br/><em>vai aprender a fazer.</em></h2></div><p>Veja detalhes de formatos, cores e acabamentos relacionados à técnica Gel na Tips.</p></Reveal>
-        {/* Imagens geradas são provisórias; substitua por fotos reais, nítidas e autorizadas antes de afirmar autoria. */}
         <div className="portfolio-grid">{GALERIA_TRABALHOS.map((item, i) => <motion.button type="button" key={item.id} className={'portfolio-card portfolio-card-'+(i+1)} onClick={() => setActive(i)} aria-label={`Ampliar foto ${i+1}: ${item.titulo}`} whileHover={reduce ? undefined : { y: -3 }} transition={{ duration: .22 }}><img className="portfolio-image" src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async"/><span className="portfolio-meta"><small>0{i+1} · GEL NA TIPS</small><span>{item.titulo}</span></span></motion.button>)}</div>
-        <p className="portfolio-caption">Imagens ilustrativas. Substitua por fotos reais e autorizadas dos trabalhos da Kamila ou de alunas.</p>
+        <p className="portfolio-caption">Referências visuais de acabamentos. As imagens não são apresentadas como trabalhos de alunas.</p>
         <div className="portfolio-cta"><p>Quer aprender a técnica por trás desses resultados?</p><PrimaryCta className="intro-buy" subtext={`${price} · checkout Kiwify`}/></div>
       </section>
 
-      <section className="mn-social-proof mn-section" id="depoimentos" aria-labelledby="proof-title" data-analytics-section="prova-social">
-        <Reveal className="section-kicker"><span>04</span><i/> EXPERIÊNCIAS DAS ALUNAS</Reveal>
-        <Reveal className="social-heading"><h2 id="proof-title">Aprenda com experiências<br/><em>reais de alunas.</em></h2><p>Os relatos abaixo devem ser substituídos por feedbacks autorizados antes da publicação.</p></Reveal>
-        <div className="testimonial-grid">{[1, 2, 3].map((number) => <article className="testimonial-card" key={number}><div className="testimonial-media"><span>[INSERIR: foto ou print de feedback]</span></div><blockquote>“[INSERIR: depoimento real da aluna, com autorização de uso]”</blockquote><p>[INSERIR: nome da aluna]</p></article>)}</div>
-        <div className="before-after-block"><div><p className="overline">EVOLUÇÃO TÉCNICA</p><h3>Antes e depois das alunas</h3><p>Substitua os espaços pelas imagens reais da mesma aluna, com autorização.</p></div><div className="before-after-grid"><div><span>ANTES</span><strong>[INSERIR: foto de antes]</strong></div><div><span>DEPOIS</span><strong>[INSERIR: foto de depois]</strong></div></div></div>
-        <div className="section-cta-light"><p>Aprenda a técnica com orientação passo a passo.</p><PrimaryCta className="intro-buy" subtext="R$ 49,90 · Kiwify"/></div>
-      </section>
 
       <section className="mn-audience mn-section" id="publico" data-analytics-section="para-quem">
-        <Reveal className="audience-side"><div className="section-kicker"><span>05</span><i/> PARA QUEM É</div><h2>Comece do zero<br/><em>ou vá além.</em></h2><p>Para quem quer aprender uma nova técnica e para profissionais que desejam ampliar os serviços que oferecem às clientes.</p><a href="#investimento" className="text-link">Ver investimento e inscrição <ArrowRight size={16}/></a></Reveal>
+        <Reveal className="audience-side"><div className="section-kicker"><span>04</span><i/> PARA QUEM É</div><h2>Comece do zero<br/><em>ou vá além.</em></h2><p>Para quem quer aprender uma nova técnica e para profissionais que desejam ampliar os serviços que oferecem às clientes.</p><a href="#investimento" className="text-link">Ver investimento e inscrição <ArrowRight size={16}/></a></Reveal>
         <div className="audience-list">{PERFIS_PUBLICO.map((profile, i) => <Reveal className="audience-item" key={profile.id} delay={i * .04}><span className="audience-index">0{i+1}</span><div><h3>{profile.titulo}</h3><p>{profile.descricao}</p></div><CheckCircle2 size={18}/></Reveal>)}</div>
         <div className="section-cta-light"><p>Uma habilidade nova começa com o primeiro módulo.</p><PrimaryCta className="intro-buy" subtext="Inscrição online pela Kiwify"/></div>
       </section>
 
-      <section className="mn-instructor mn-section" id="instrutora" aria-labelledby="instructor-title" data-analytics-section="instrutora">
-        <div className="instructor-inner"><Reveal className="instructor-visual instructor-photo-placeholder"><div className="photo-placeholder has-image"><img className="instructor-temp-photo" src="/images/hero-kamila-editorial.webp" alt="Imagem ilustrativa provisória de uma nail designer atendendo uma cliente; não é uma foto oficial da Kamila Martins." width="1024" height="1536" loading="lazy" decoding="async"/><span>Imagem ilustrativa provisória</span><small>Substituir pela foto oficial da Kamila antes da publicação final.</small></div><div className="instructor-stamp"><small>NAIL DESIGNER · ITAQUERA, SP</small></div></Reveal><Reveal className="instructor-copy" delay={.08}><div className="section-kicker section-kicker-light"><span>06</span><i/> SOBRE A KAMILA</div><p className="overline">NAIL DESIGNER E INSTRUTORA</p><h2 id="instructor-title">Aprenda com<br/><em>{INSTRUTORA_CONFIG.nome}.</em></h2><p className="instructor-bio">{INSTRUTORA_CONFIG.resumoConfirmado}</p><ul className="instructor-credentials"><li><strong>Experiência:</strong> [INSERIR: anos de experiência]</li><li><strong>Clientes:</strong> [INSERIR: nº de clientes atendidas]</li><li><strong>Formação:</strong> [INSERIR: formação/certificações]</li></ul><div className="instructor-location"><MapPin size={18}/><span>{INSTRUTORA_CONFIG.localizacao}</span></div>{hasInstagram ? <a className="instructor-link" href={INSTRUTORA_CONFIG.instagramUrl} target="_blank" rel="noreferrer">Instagram da Kamila <ArrowRight size={16}/><span className="sr-only">Abre em nova aba</span></a> : <p className="instructor-link">[INSERIR: link do Instagram da Kamila]</p>}<PrimaryCta className="intro-buy" subtext={`${price} · checkout Kiwify`}/></Reveal></div>
+      <section className="mn-instructor mn-section instructor-editorial" id="instrutora" aria-labelledby="instructor-title" data-analytics-section="instrutora">
+        <Reveal className="instructor-editorial-inner"><div><div className="section-kicker section-kicker-light"><span>05</span><i/> QUEM CONDUZ O CURSO</div><p className="overline">NAIL DESIGNER E INSTRUTORA</p><h2 id="instructor-title">Kamila<br/><em>Martins.</em></h2><p className="instructor-location">Itaquera, São Paulo · SP</p></div><div className="instructor-editorial-copy"><p>Uma apresentação organizada da técnica Gel na Tips, com foco no preparo, na construção da estrutura, no acabamento e na manutenção.</p><p>O conteúdo é online e pode ser acompanhado no seu ritmo, com acesso vitalício após a confirmação da compra.</p><PrimaryCta className="intro-buy" subtext={`${price} · checkout Kiwify`}/></div></Reveal>
       </section>
-
       <section className="mn-offer mn-section" id="investimento" aria-labelledby="offer-title" data-analytics-section="oferta">
-        <Reveal className="offer-card"><div className="offer-left"><div className="section-kicker section-kicker-light"><span>07</span><i/> SUA INSCRIÇÃO</div><p className="overline">CHAVE DO SUCESSO · MASTER NAILS · GEL NA TIPS</p><h2 id="offer-title">Comece a estudar<br/><em>hoje mesmo.</em></h2><p className="offer-intro">Curso online de Gel na Tips por {price}.</p><ul className="offer-benefits"><li><CheckCircle2 size={19}/> Seis módulos do preparo à manutenção</li><li><CheckCircle2 size={19}/> Aulas online passo a passo</li><li><CheckCircle2 size={19}/> Certificado de conclusão incluso</li><li><CheckCircle2 size={19}/> Acesso imediato e vitalício</li></ul><p className="offer-anchor">Compare o investimento com o valor de uma aplicação: <strong>[INSERIR: valor médio cobrado por aplicação na sua região]</strong>. O retorno depende da sua prática, preço e procura local.</p></div><div className="offer-right"><div className="offer-price-label">INVESTIMENTO NO CURSO</div>{INVESTIMENTO_CONFIG.precoConfirmado ? <p className="offer-price"><small>{INVESTIMENTO_CONFIG.moeda}</small>{INVESTIMENTO_CONFIG.valorPrincipal}</p> : <p className="offer-price offer-price-consult">Confira no checkout</p>}<p className="offer-installments">{INVESTIMENTO_CONFIG.mostrarParcelamento ? INVESTIMENTO_CONFIG.textoParcelamento : INVESTIMENTO_CONFIG.parcelamentoPlaceholder}</p><p className="payment-methods">{INVESTIMENTO_CONFIG.formasPagamento}</p><PrimaryCta className="offer-button" subtext="Você seguirá para o checkout oficial da Kiwify"/><div className="guarantee-placeholder"><ShieldCheck size={22}/><div><strong>Garantia</strong><span>{GARANTIA_CONFIG.prazoPlaceholder}</span></div></div><p className="secure-note"><LockKeyhole size={16}/> Pagamento processado em ambiente seguro pela Kiwify</p></div></Reveal><p className="offer-footnote">Confira o valor e as condições finais diretamente no checkout.</p>
+        <Reveal className="offer-card"><div className="offer-left"><div className="section-kicker section-kicker-light"><span>06</span><i/> SUA INSCRIÇÃO</div><p className="overline">CHAVE DO SUCESSO · MASTER NAILS · GEL NA TIPS</p><h2 id="offer-title">Comece a estudar<br/><em>no seu ritmo.</em></h2><p className="offer-intro">Curso online de Gel na Tips por {price}.</p><ul className="offer-benefits"><li><CheckCircle2 size={19}/> Conteúdo organizado em seis etapas</li><li><CheckCircle2 size={19}/> Aulas online passo a passo</li><li><CheckCircle2 size={19}/> Certificado de conclusão incluso</li><li><CheckCircle2 size={19}/> Acesso imediato e vitalício</li></ul></div><div className="offer-right"><div className="offer-price-label">INVESTIMENTO NO CURSO</div>{INVESTIMENTO_CONFIG.precoConfirmado ? <p className="offer-price"><small>{INVESTIMENTO_CONFIG.moeda}</small>{INVESTIMENTO_CONFIG.valorPrincipal}</p> : <p className="offer-price offer-price-consult">Confira no checkout</p>}<p className="offer-installments">Consulte opções de parcelamento no checkout.</p><p className="payment-methods">As formas de pagamento disponíveis aparecem na página segura da Kiwify.</p><PrimaryCta className="offer-button" subtext="Você seguirá para o checkout oficial da Kiwify"/><p className="secure-note"><LockKeyhole size={16}/> Pagamento processado em ambiente seguro pela Kiwify</p></div></Reveal><p className="offer-footnote">A compra é concluída no checkout oficial da Kiwify.</p>
       </section>
 
-      <section className="mn-faq mn-section" id="duvidas" aria-labelledby="faq-title" data-analytics-section="faq"><Reveal className="faq-intro"><div className="section-kicker"><span>08</span><i/> DÚVIDAS FREQUENTES</div><h2 id="faq-title">Dúvidas frequentes</h2><p>Respostas diretas para você decidir com segurança.</p></Reveal><Reveal className="faq-content"><FaqAccordion items={FAQ_ITEMS}/></Reveal><div className="section-cta-light"><p>Pronta para começar?</p><PrimaryCta className="intro-buy" subtext={`${price} · pagamento pela Kiwify`}/></div></section>
+      <section className="mn-faq mn-section" id="duvidas" aria-labelledby="faq-title" data-analytics-section="faq"><Reveal className="faq-intro"><div className="section-kicker"><span>07</span><i/> DÚVIDAS FREQUENTES</div><h2 id="faq-title">Dúvidas frequentes</h2><p>Respostas diretas para você decidir com segurança.</p></Reveal><Reveal className="faq-content"><FaqAccordion items={FAQ_ITEMS.filter((item) => !item.resposta.includes('[INSERIR:'))}/></Reveal><div className="section-cta-light"><p>Pronta para começar?</p><PrimaryCta className="intro-buy" subtext={`${price} · pagamento pela Kiwify`}/></div></section>
 
       <section className="mn-last-call" data-analytics-section="cta-final"><div className="last-call-ornament" aria-hidden="true">✳</div><div className="section-kicker section-kicker-light"><i/> PRÓXIMO PASSO</div><h2>Aprenda Gel na Tips<br/><em>do preparo ao acabamento.</em></h2><p>Inscreva-se no curso online Chave do Sucesso Master Nails.</p><PrimaryCta className="last-call-button" subtext={`${price} · checkout Kiwify`}/></section>
     </main>
 
-    <footer className="mn-footer"><a href="#inicio" className="mn-brand footer-brand" aria-label="Master Nails — início"><span className="brand-mark">M<span>N</span></span><span className="brand-copy"><strong>MASTER NAILS</strong><small>GEL NA TIPS · KAMILA MARTINS</small></span></a><p>Curso online de alongamento de unhas em Gel na Tips.</p>{hasInstagram&&<a className="footer-instagram" href={LINK_INSTAGRAM} target="_blank" rel="noreferrer">Instagram da Kamila <ArrowRight size={15}/><span className="sr-only">Abre em nova aba</span></a>}<span className="footer-copy">© 2026 Master Nails · Kamila Martins · [INSERIR: aviso legal da empresa]</span></footer>
+    <footer className="mn-footer"><a href="#inicio" className="mn-brand footer-brand" aria-label="Master Nails — início"><span className="brand-mark">M<span>N</span></span><span className="brand-copy"><strong>MASTER NAILS</strong><small>GEL NA TIPS · KAMILA MARTINS</small></span></a><p>Curso online de alongamento de unhas em Gel na Tips.</p><span className="footer-copy">© 2026 Master Nails · Kamila Martins.</span></footer>
     <div className="mobile-purchase-bar"><div><span>Chave do Sucesso · Gel na Tips</span><strong>{INVESTIMENTO_CONFIG.precoConfirmado ? price : 'Confira no checkout'}</strong></div><PrimaryCta className="mobile-cta"/></div>
     <GalleryLightbox items={GALERIA_TRABALHOS} currentIndex={active} onClose={() => setActive(null)} onPrev={() => setActive((v) => v === null ? null : (v - 1 + GALERIA_TRABALHOS.length) % GALERIA_TRABALHOS.length)} onNext={() => setActive((v) => v === null ? null : (v + 1) % GALERIA_TRABALHOS.length)}/>
   </div>;
