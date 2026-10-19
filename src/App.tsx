@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowDown, ArrowRight, Award, BadgeCheck, BookOpen, Check, CheckCircle2, CirclePlay, Hand, Infinity as InfinityIcon, Layers, LockKeyhole, MapPin, Menu, MonitorPlay, RefreshCw, Ruler, ShieldCheck, Sparkles, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, Award, BadgeCheck, BookOpen, CheckCircle2, CirclePlay, Hand, Infinity as InfinityIcon, Layers, LockKeyhole, MapPin, Menu, MonitorPlay, RefreshCw, Ruler, ShieldCheck, Sparkles, X } from 'lucide-react';
 import { LINK_INSTAGRAM, isLinkConfigured, INSTRUTORA_CONFIG, TOPICOS_APRENDIZADO, PERFIS_PUBLICO, INVESTIMENTO_CONFIG, GARANTIA_CONFIG, GALERIA_TRABALHOS, FAQ_ITEMS } from './config/courseConfig';
 import { CheckoutButton } from './components/CheckoutButton';
 import { GalleryLightbox } from './components/GalleryLightbox';
@@ -21,10 +21,18 @@ const moduleIcons = [Hand, Layers, BookOpen, Ruler, Sparkles, RefreshCw];
 
 function CourseMockup() {
   return <div className="course-hero-visual" aria-label="Prévia ilustrativa da área digital do curso Master Nails">
-    <div className="mockup-orbit mockup-orbit-a" aria-hidden="true"/><div className="mockup-orbit mockup-orbit-b" aria-hidden="true"/>
-    <div className="mockup-laptop" aria-hidden="true"><div className="mockup-laptop-screen"><div className="mockup-topbar"><span className="mockup-brand-mark">M<span>N</span></span><span>ÁREA DE ALUNAS</span><span className="mockup-live-dot"/></div><div className="mockup-content"><div className="mockup-player"><div className="mockup-player-tag">AULA 01 · PREPARAÇÃO</div><div className="mockup-video-art"><img className="mockup-preview-image" src="/images/course-detail-editorial.webp" alt="" width="1122" height="1402" loading="eager" decoding="async"/><div className="mockup-nail-shape"/><span className="mockup-play"><CirclePlay size={34}/></span><span className="mockup-video-placeholder">[PRÉVIA DA AULA]</span></div><div className="mockup-player-caption"><strong>Preparação da unha natural</strong><span>Passo a passo · Gel na Tips</span></div></div><div className="mockup-lessons"><span className="mockup-lessons-label">MÓDULOS DO CURSO</span>{['Preparação','Aplicação das tips','Estrutura','Acabamento'].map((item,i)=><div className="mockup-lesson" key={item}><span>0{i+1}</span><span>{item}</span>{i===0&&<Check size={13}/>}</div>)}</div></div><div className="mockup-progress"><span/><small>SEU APRENDIZADO, NO SEU RITMO</small></div></div><div className="mockup-laptop-base"/></div>
-    <div className="mockup-phone" aria-hidden="true"><div className="mockup-phone-camera"/><div className="mockup-phone-screen"><span className="phone-kicker">MASTER NAILS</span><div className="phone-art"><div className="mockup-nail-shape"/><span><CirclePlay size={24}/></span></div><strong>Gel na Tips</strong><small>Continue sua aula</small><div className="phone-progress"><i/></div><small>01 · Preparação</small></div></div>
-    <div className="mockup-float mockup-float-certificate"><BadgeCheck size={18}/><span>Certificado<br/><strong>incluso</strong></span></div><div className="mockup-float mockup-float-access"><InfinityIcon size={20}/><span>Acesso<br/><strong>vitalício</strong></span></div>
+    <div className="hero-visual-halo" aria-hidden="true" />
+    <figure className="hero-nail-shot">
+      <img src="/images/nail-editorial-04.webp" alt="Imagem ilustrativa de unhas alongadas em rosa perolado com acabamento brilhante" width="840" height="1050" loading="eager" decoding="async" />
+      <figcaption className="hero-nail-caption"><span>GEL NA TIPS · ACABAMENTO</span><strong>Do preparo à finalização</strong><small>Imagem ilustrativa</small></figcaption>
+    </figure>
+    <div className="hero-lesson-preview" aria-label="Prévia ilustrativa do curso online">
+      <div className="hero-preview-header"><span className="hero-preview-play"><CirclePlay size={22}/></span><span><small>AULA 01 · PASSO A PASSO</small><strong>Preparação da unha natural</strong></span></div>
+      <div className="hero-preview-progress"><i/></div>
+      <p>Curso online <span>·</span> acesso no seu ritmo</p>
+    </div>
+    <div className="hero-float hero-float-certificate"><BadgeCheck size={19}/><span>Certificado<br/><strong>incluso</strong></span></div>
+    <div className="hero-float hero-float-access"><InfinityIcon size={20}/><span>Acesso<br/><strong>vitalício</strong></span></div>
   </div>;
 }
 
