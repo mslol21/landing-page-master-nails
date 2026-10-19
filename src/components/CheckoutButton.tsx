@@ -54,7 +54,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
         onClick={handleClick}
         target={configured ? '_blank' : undefined}
         rel={configured ? 'noopener noreferrer' : undefined}
-        className={`group inline-flex items-center justify-center gap-3 rounded-lg bg-gold-400 text-obsidian-950 font-semibold tracking-wide transition-colors duration-200 hover:bg-gold-300 active:bg-gold-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-300 shadow-sm ${sizeClasses}`}
+        className={`mn-cta-link group inline-flex items-center justify-center gap-3 rounded-lg font-semibold tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 shadow-sm ${sizeClasses}`}
       >
         <span>{label}</span>
         <ArrowRight
