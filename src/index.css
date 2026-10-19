@@ -600,7 +600,7 @@ html, body, .mn-page { background: var(--paper); color: var(--ink); }
   --paper: #f4f0e9; --paper-deep: #e9e0d4; --ink: #261b17; --ink-soft: #493a33;
   --muted: #75675e; --wine: #4b3027; --night: #201713; --gold: #b99668;
   --gold-light: #e7d2af; --line: rgba(46, 33, 26, .15);
-  --serif: "Bodoni Moda", "Bodoni Moda", Georgia, serif;
+  --serif: "Bodoni Moda", Georgia, serif;
   --sans: "Manrope", system-ui, sans-serif;
 }
 body, button, a { font-family: var(--sans); }
@@ -1810,4 +1810,180 @@ html, body, .mn-page { background: var(--paper); color: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
   html:focus-within { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Kokonut UI Drape Background: satin-like texture, used as a restrained hero accent. */
+.hero-art { position: relative; isolation: isolate; }
+.hero-drape {
+  position: absolute !important;
+  z-index: -1;
+  top: -8%;
+  right: -7%;
+  bottom: -3%;
+  left: 5%;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: hidden;
+  background: transparent !important;
+  opacity: .68;
+  pointer-events: none;
+}
+.hero-drape canvas { pointer-events: none; }
+.hero-photo-composition { position: relative; z-index: 1; }
+@media (max-width: 760px) {
+  .hero-drape { top: -5%; right: -2%; bottom: 5%; left: 12%; opacity: .48; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-drape { display: none !important; }
+}
+
+/* Gradient-button treatment adapted to Master Nails wine, champagne and cocoa palette. */
+.mn-cta-link {
+  border: 1px solid transparent !important;
+  background: linear-gradient(120deg, #5a2c32 0%, #713940 52%, #4b252b 100%) padding-box,
+    linear-gradient(115deg, #a77c56, #f0d8aa 38%, #b68d60 72%, #ead1a1) border-box !important;
+  color: #fffaf3 !important;
+  box-shadow: 0 10px 24px rgba(76, 38, 42, .2), inset 0 1px 0 rgba(255,255,255,.13) !important;
+}
+.mn-cta-link:hover {
+  background: linear-gradient(120deg, #6a343a 0%, #82434a 52%, #5a2c32 100%) padding-box,
+    linear-gradient(115deg, #b48d65, #f5e3c2 38%, #c59d6e 72%, #f0ddb8) border-box !important;
+  box-shadow: 0 13px 28px rgba(76, 38, 42, .25), inset 0 1px 0 rgba(255,255,255,.16) !important;
+}
+.mn-cta-link:focus-visible { outline-color: #825c42 !important; }
+.lightbox-photo { cursor: grab; touch-action: pan-y; }
+.lightbox-photo:active { cursor: grabbing; }
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-photo { cursor: default; }
+}
+
+/* Paleta final Master Nails: preto, champagne e rosa, com superfícies claras blush. */
+:root {
+  --paper: #fbf7f8;
+  --paper-deep: #f1e7eb;
+  --ink: #191519;
+  --ink-soft: #382c33;
+  --muted: #5b5056;
+  --wine: #24171f;
+  --night: #100e12;
+  --gold: #c7a363;
+  --gold-light: #f0ddb5;
+  --action: #a72d60;
+  --action-strong: #84234b;
+  --action-ink: #fffafc;
+  --action-hover: #bc3a70;
+  --line: rgba(40, 27, 36, .16);
+}
+
+html, body, .mn-page { background: var(--paper); color: var(--ink); }
+::selection { background: #f1c6d5; color: #23131a; }
+:focus-visible { outline-color: var(--gold) !important; }
+.mn-header { background: rgba(16, 14, 18, .97); border-color: rgba(199, 163, 99, .28); }
+.brand-mark { color: var(--gold-light); border-color: var(--gold); }
+.brand-mark span { color: #e6b5c6; }
+.brand-copy strong { color: #fff8f7; }
+.brand-copy small { color: #d5bdc7; }
+.mn-nav a { color: #f1e8ed; }
+.mn-nav a:hover { color: #e5b2c4; }
+.mobile-menu-button { color: #f8edf2; border-color: rgba(240, 221, 181, .45); }
+.mn-header .header-cta .mn-cta-link { color: #fffafc !important; }
+
+.mn-hero { background: radial-gradient(ellipse at 82% 30%, #f2dce4 0%, #fbf7f8 44%, #f6eef1 100%); }
+.hero-copy h1 { color: #191519; }
+.hero-copy h1 em, .mn-section h2 em { color: var(--action) !important; }
+.hero-lede { color: #443940; }
+.hero-lede strong { color: #84234b; }
+.hero-price-badge strong { color: var(--action); }
+.hero-trust-strip { background: #f0e5e9; }
+.hero-trust-strip > i { background: rgba(40, 27, 36, .22); }
+.hero-trust-strip div strong { color: #231a20; }
+.hero-trust-strip div span { color: #574950; }
+
+.mn-curriculum { background: linear-gradient(145deg, #100e12, #1b141a 72%, #241720); }
+.curriculum-head h2, .curriculum-row h3 { color: #fff8f6; }
+.curriculum-head h2 em, .curriculum-number, .module-icon { color: var(--gold-light); }
+.section-kicker-light, .instructor-editorial .section-kicker, .instructor-editorial .overline { color: #e5c989; }
+.mn-instructor.instructor-editorial { background: linear-gradient(130deg, #100e12, #21151d); }
+.instructor-editorial h2 em, .instructor-editorial .instructor-location { color: #e7b4c7 !important; }
+.instructor-editorial-copy p { color: #f3e9ed; }
+
+.mn-portfolio { background: #fbf7f8; }
+.mn-portfolio .portfolio-heading h2 em, .portfolio-meta > span { color: var(--action); }
+.portfolio-caption { color: #55484f !important; }
+.mn-audience { background: #f4eaee; }
+.audience-item svg, .audience-index { color: var(--action); }
+.mn-offer { background: #f4eaee; }
+.offer-card { border-color: rgba(199, 163, 99, .72) !important; background: linear-gradient(135deg, #100e12, #21151d) !important; }
+.offer-card .section-kicker, .offer-card .overline { color: #e5c989; }
+.offer-card h2, .offer-card .offer-price { color: #fff9f8 !important; }
+.offer-card h2 em { color: #e7b4c7 !important; }
+.offer-right { background: #fbf7f8; }
+.offer-right .offer-price { color: var(--action) !important; }
+.offer-right .offer-price small { color: #3b3036; }
+.offer-right p { color: #51454b !important; }
+.offer-right .secure-note { color: #3e343a !important; }
+.mn-faq { background: #fffafb; }
+.mn-faq .section-kicker, .faq-intro h2 em { color: var(--action); }
+.mn-last-call { background: radial-gradient(ellipse at 80% 0%, #3a1d2b, #171117 48%, #100e12 100%); color: #fff8f7; }
+.last-call-ornament { display: none !important; }
+.mn-last-call .section-kicker { color: var(--gold-light); }
+.mn-last-call .section-kicker i { background: var(--gold); }
+.mn-last-call h2 { color: #fff9f8; }
+.mn-last-call h2 em { color: #e9adc3 !important; }
+.mn-last-call > p, .mn-last-call .last-call-button > span { color: #f5eaf0 !important; }
+.mn-footer { background: #100e12; border-top-color: rgba(199, 163, 99, .28); }
+.mn-footer p, .mn-footer .footer-copy { color: #e6dce1; }
+.mobile-purchase-bar { background: #fffafb; border-top-color: rgba(40, 27, 36, .18); }
+.mobile-purchase-bar > div span { color: #52464c; }
+.mobile-purchase-bar > div strong { color: var(--action); }
+
+/* CTA rosa com filete dourado e texto de alto contraste. */
+.mn-cta-link,
+.header-cta a, .hero-buy a, .offer-button a, .last-call-button a,
+.intro-buy a, .mobile-cta a {
+  color: #fffafc !important;
+  border: 1px solid transparent !important;
+  background: linear-gradient(125deg, #a72d60 0%, #8d2854 58%, #762146 100%) padding-box,
+    linear-gradient(115deg, #a77c42, #f0ddb5 38%, #c19a5a 74%, #ead29d) border-box !important;
+  box-shadow: 0 9px 24px rgba(111, 31, 68, .22), inset 0 1px 0 rgba(255,255,255,.15) !important;
+}
+.mn-cta-link:hover,
+.header-cta a:hover, .hero-buy a:hover, .offer-button a:hover, .last-call-button a:hover,
+.intro-buy a:hover, .mobile-cta a:hover {
+  color: #fff !important;
+  background: linear-gradient(125deg, #bb3c70 0%, #9f2d5c 58%, #81244c 100%) padding-box,
+    linear-gradient(115deg, #bd965d, #f8e8c7 38%, #d2ad6b 74%, #f2dfb1) border-box !important;
+  box-shadow: 0 12px 27px rgba(111, 31, 68, .29), inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+@media (max-width: 760px) {
+  .mn-nav.is-open { background: #100e12; border-color: rgba(199, 163, 99, .24); }
+  .mn-nav.is-open a { color: #fff5f7; }
+  .mn-nav.is-open a:hover { color: #e9adc3; }
+}
+
+/* Magic UI Pulsating Button, adapted as a restrained champagne pulse on the primary hero CTA. */
+.hero-buy > .mn-cta-link {
+  isolation: isolate;
+  overflow: visible !important;
+}
+.hero-buy > .mn-cta-link::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -4px;
+  border: 1px solid rgba(199, 163, 99, .72);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  animation: mn-luxe-pulse 3.2s cubic-bezier(.2, .65, .3, 1) infinite;
+}
+@keyframes mn-luxe-pulse {
+  0% { transform: scale(.99); opacity: 0; }
+  18% { opacity: .72; }
+  72%, 100% { transform: scale(1.055); opacity: 0; }
+}
+.hero-buy > .mn-cta-link:hover::before { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-buy > .mn-cta-link::before { animation: none; display: none; }
 }

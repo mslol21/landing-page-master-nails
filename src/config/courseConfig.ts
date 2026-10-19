@@ -28,13 +28,12 @@ export function isLinkConfigured(link: string): boolean {
 export const INSTRUTORA_CONFIG = {
   nome: 'Kamila Martins',
   atuacao: 'Nail Designer e Instrutora',
-  localizacao: 'Itaquera, São Paulo — SP',
   fotoUrl: '[INSERIR: foto real da Kamila em alta resolução]',
   instagramUrl: LINK_INSTAGRAM,
   fotoAlt:
     'Foto real de Kamila Martins, nail designer e instrutora do curso Gel na Tips',
   resumoConfirmado:
-    'Nail designer e instrutora em Itaquera, São Paulo, com atuação em alongamento de unhas, estrutura, durabilidade e acabamento. [INSERIR: anos de experiência]. [INSERIR: número de clientes atendidas]. [INSERIR: formação e certificações].',
+    'Nail designer e instrutora com atuação em alongamento de unhas, estrutura, durabilidade e acabamento. [INSERIR: anos de experiência]. [INSERIR: número de clientes atendidas]. [INSERIR: formação e certificações].',
   // Campo opcional caso deseje adicionar informações biográficas confirmadas futuramente:
   notaComplementarOpcional: '',
 };
