@@ -7,7 +7,7 @@
  */
 
 // 1. LINKS PRINCIPAIS (Substitua pelos endereços reais)
-export const LINK_CHECKOUT = '[LINK_CHECKOUT]';
+export const LINK_CHECKOUT = 'https://pay.kiwify.com.br/9ohRuBR';
 export const LINK_INSTAGRAM = '[LINK_INSTAGRAM]';
 export const LINK_WHATSAPP = '[LINK_WHATSAPP]';
 

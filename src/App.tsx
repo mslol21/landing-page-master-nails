@@ -48,7 +48,7 @@ export default function App() {
         <div className="hero-inner">
           <motion.div className="hero-copy" initial={heroInitial} animate={{ opacity: 1, y: 0 }} transition={heroTransition}>
             <div className="eyebrow eyebrow-light"><span className="eyebrow-line"/>FORMAÇÃO ONLINE · GEL NA TIPS</div>
-            <h1 id="hero-title">Domine Gel na Tips <em>do preparo ao acabamento.</em></h1>
+            <h1 id="hero-title">Gel na Tips <em>do preparo ao acabamento.</em></h1>
             <p className="hero-lede">Aprenda a técnica com Kamila Martins em aulas passo a passo, com foco em estrutura, curvatura e acabamento.</p>
             <div className="hero-actions">
               <CheckoutButton label="Conhecer o curso" subtext="Confira as condições de inscrição" size="lg" className="hero-buy" onUnconfiguredClick={onCheckoutUnavailable}/>
@@ -66,7 +66,7 @@ export default function App() {
       <section className="mn-intro mn-section" id="curso">
         <Reveal className="section-kicker"><span>01</span><i/> SOBRE O CURSO</Reveal>
         <Reveal className="intro-grid"><div className="intro-heading"><p className="overline">MAIS TÉCNICA. MAIS CONFIANÇA.</p><h2>Aprenda uma técnica<br/><em>em cada etapa.</em></h2></div><div className="intro-copy"><p>O Master Nails: Gel na Tips apresenta o processo de alongamento em gel de forma organizada e prática. Acompanhe as etapas fundamentais e entenda como cada detalhe contribui para um resultado bem estruturado.</p><a href="#conteudo" className="text-link">Explore o conteúdo <ArrowRight size={16}/></a></div></Reveal>
-        <div className="intro-bottom"><Reveal className="intro-image-wrap"><Photo className="detail-photo" src="/images/course-detail.webp" alt="Unhas em gel com acabamento branco perolado"/><span className="image-note">DETALHE DE ACABAMENTO <i>✳</i> GEL NA TIPS</span></Reveal><div className="intro-facts">{[['01','Aprenda no seu ritmo','Curso online para estudar nos horários que funcionam para você.'],['02','Veja cada etapa de perto','Aulas passo a passo sobre a técnica Gel na Tips.'],['03','Conclua com certificado','Certificado de conclusão incluído no curso.']].map(([n,t,d],i)=><Reveal className="fact-item" key={n} delay={i*.07}><span className="fact-no">{n}</span><div><strong>{t}</strong><p>{d}</p></div></Reveal>)}</div></div>
+        <div className="intro-bottom"><Reveal className="intro-image-wrap"><Photo className="detail-photo" src="/images/course-detail-editorial.webp" alt="Fotografia editorial ilustrativa de unhas em gel com acabamento rosado perolado"/><span className="image-note">FOTOGRAFIA EDITORIAL <i>✳</i> GEL NA TIPS</span></Reveal><div className="intro-facts">{[['01','Aprenda no seu ritmo','Curso online para estudar nos horários que funcionam para você.'],['02','Veja cada etapa de perto','Aulas passo a passo sobre a técnica Gel na Tips.'],['03','Conclua com certificado','Certificado de conclusão incluído no curso.']].map(([n,t,d],i)=><Reveal className="fact-item" key={n} delay={i*.07}><span className="fact-no">{n}</span><div><strong>{t}</strong><p>{d}</p></div></Reveal>)}</div></div>
       </section>
 
       <section className="mn-curriculum mn-section" id="conteudo" aria-labelledby="curriculum-title">
