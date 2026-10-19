@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: "Manrope", sans-serif;
   color: #201a17;
   background: #f6f2ec;
   font-synthesis: none;
@@ -18,8 +18,8 @@
   --gold: #d4ad68;
   --gold-light: #efdaaf;
   --line: rgba(38, 29, 23, .16);
-  --serif: "Cormorant Garamond", Georgia, serif;
-  --sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --serif: "Bodoni Moda", Georgia, serif;
+  --sans: "Manrope", system-ui, sans-serif;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 88px; background: var(--paper); }
@@ -600,8 +600,8 @@ html, body, .mn-page { background: var(--paper); color: var(--ink); }
   --paper: #f4f0e9; --paper-deep: #e9e0d4; --ink: #261b17; --ink-soft: #493a33;
   --muted: #75675e; --wine: #4b3027; --night: #201713; --gold: #b99668;
   --gold-light: #e7d2af; --line: rgba(46, 33, 26, .15);
-  --serif: "Bodoni Moda", "Cormorant Garamond", Georgia, serif;
-  --sans: "DM Sans", system-ui, sans-serif;
+  --serif: "Bodoni Moda", "Bodoni Moda", Georgia, serif;
+  --sans: "Manrope", system-ui, sans-serif;
 }
 body, button, a { font-family: var(--sans); }
 html, body, .mn-page { background: var(--paper); color: var(--ink); }
@@ -987,8 +987,8 @@ body { font-size: 16px; }
 .course-facts { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 42px 0 26px; border-block: 1px solid rgba(91,65,43,.2); }
 .course-facts > div { display: grid; gap: 9px; padding: 20px 16px; border-right: 1px solid rgba(91,65,43,.16); }
 .course-facts > div:last-child { border: 0; }
-.course-facts span { color: #745d48; font: 700 11px/1.35 'DM Sans',sans-serif; letter-spacing: .1em; }
-.course-facts strong { color: #281e18; font: 600 16px/1.45 'DM Sans',sans-serif; }
+.course-facts span { color: #745d48; font: 700 11px/1.35 'Manrope',sans-serif; letter-spacing: .1em; }
+.course-facts strong { color: #281e18; font: 600 16px/1.45 'Manrope',sans-serif; }
 .course-benefit-strip { display:flex; justify-content:space-between; align-items:center; gap:22px; padding:20px 4px; border-bottom:1px solid rgba(91,65,43,.18); color:#31241d; }
 .course-benefit-strip span { display:flex; align-items:center; gap:10px; font-size:16px; font-weight:600; }
 .course-benefit-strip svg { color:#a8793e; flex:0 0 auto; }
@@ -1002,7 +1002,7 @@ body { font-size: 16px; }
 .testimonial-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-top:38px; }
 .testimonial-card { padding:20px; border:1px solid rgba(115,82,52,.2); background:#f8f3eb; color:#2a201a; }
 .testimonial-media { display:grid; place-items:center; min-height:175px; aspect-ratio:4/3; padding:20px; background:#eee5d9; color:#695541; text-align:center; font-size:14px; font-weight:700; }
-.testimonial-card blockquote { margin:20px 0 14px; color:#3c2d24; font:500 18px/1.6 'DM Sans',sans-serif; }
+.testimonial-card blockquote { margin:20px 0 14px; color:#3c2d24; font:500 18px/1.6 'Manrope',sans-serif; }
 .testimonial-card > p { margin:0; color:#71563a; font-size:15px; font-weight:700; }
 .before-after-block { display:grid; grid-template-columns:.8fr 1.2fr; align-items:center; gap:32px; margin-top:55px; padding:30px; border:1px solid rgba(115,82,52,.22); }
 .before-after-block h3 { margin:8px 0; font:500 clamp(28px,4vw,42px)/1.1 'Bodoni Moda',serif; }
@@ -1056,7 +1056,7 @@ body { font-size: 16px; }
   .mobile-purchase-bar { position:fixed; z-index:80; right:0; bottom:0; left:0; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px max(14px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)); border-top:1px solid rgba(239,213,169,.28); background:rgba(33,23,19,.97); box-shadow:0 -8px 28px rgba(0,0,0,.2); }
   .mobile-purchase-bar > div { display:grid; gap:3px; min-width:0; }
   .mobile-purchase-bar > div span { color:#e7dacb; font-size:12px; font-weight:600; line-height:1.25; }
-  .mobile-purchase-bar > div strong { color:#f0d5a8; font:600 22px/1.1 'DM Sans',sans-serif; }
+  .mobile-purchase-bar > div strong { color:#f0d5a8; font:600 22px/1.1 'Manrope',sans-serif; }
   .mobile-purchase-bar .mobile-cta { width:auto!important; flex:0 0 auto; }
   .mobile-purchase-bar .mobile-cta > a { min-height:50px!important; padding:0 14px; font-size:13px!important; white-space:nowrap; }
   .mobile-purchase-bar .mobile-cta > span { display:none; }
@@ -1085,8 +1085,8 @@ body { font-size: 16px; }
   --action-hover: #ff9271;
   --copy-dark: #443a33;
   --copy-light: #f2ebe2;
-  --serif: "Cormorant Garamond", Georgia, serif;
-  --sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --serif: "Bodoni Moda", Georgia, serif;
+  --sans: "Manrope", system-ui, sans-serif;
   font-family: var(--sans);
 }
 html { scroll-behavior: smooth; }
