@@ -230,13 +230,13 @@ export interface ItemGaleria {
 
 export const IMAGENS_PAGINA = {
   heroPrincipal: {
-    src: '/images/nail-05.webp',
-    alt: 'Unhas rosadas com francesinha branca e detalhe floral',
+    src: '/images/hero-lovable.jpg',
+    alt: 'Mãos com unhas alongadas em gel, acabamento nude rosado (imagem ilustrativa)',
     legenda: 'Master Nails — Gel na Tips',
   },
   detalheCurso: {
-    src: '/images/course-detail.webp',
-    alt: 'Unhas em gel com acabamento branco perolado',
+    src: '/images/course-detail-editorial.webp',
+    alt: 'Detalhes ilustrativos de unhas com acabamento rosado',
     legenda: 'Detalhe de acabamento em Gel na Tips',
   },
 };
