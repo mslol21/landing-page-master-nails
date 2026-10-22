@@ -10,8 +10,8 @@ const { render } = await import(pathToFileURL(serverBundle).href);
 const markup = render();
 
 if (
-  !markup.includes("Eleve sua técnica.") ||
-  !markup.includes("Dúvidas frequentes")
+  !markup.includes("Pare de tentar acertar.") ||
+  !markup.includes("O que você")
 ) {
   throw new Error(
     "A pré-renderização não incluiu o conteúdo esperado da landing page.",
